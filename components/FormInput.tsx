@@ -10,6 +10,7 @@ interface FormInputProps {
   keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
   onTogglePassword?: () => void;
   showPassword?: boolean;
+  placeholder?: string;
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
@@ -20,6 +21,7 @@ export const FormInput: React.FC<FormInputProps> = ({
   keyboardType = "default",
   onTogglePassword,
   showPassword,
+  placeholder
 }) => {
   return (
     <View style={styles.inputContainer}>
@@ -29,11 +31,12 @@ export const FormInput: React.FC<FormInputProps> = ({
           style={styles.input}
           value={value}
           onChangeText={onChangeText}
-          secureTextEntry={secureTextEntry}
+          secureTextEntry={secureTextEntry && !showPassword} // Corrigido para considerar showPassword
           keyboardType={keyboardType}
           autoCapitalize="none"
+          placeholder={placeholder}
         />
-        {secureTextEntry && onTogglePassword && (
+        {onTogglePassword && (
           <Ionicons
             name={showPassword ? "eye-outline" : "eye-off-outline"}
             size={20}
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
+    padding: 8,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#D6D6D6",

@@ -13,11 +13,11 @@ import { FormInput } from "@/components/FormInput";
 import { BottomBar } from "@/components/BottomBar";
 
 const RegisterScreen = () => {
-  const [email, setEmail] = useState("joao.evangelista@gmail.com");
-  const [name, setName] = useState("João Victor Evangelista");
-  const [password, setPassword] = useState("**********");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(true);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const handleRegister = () => {
     // Handle registration logic
@@ -40,9 +40,10 @@ const RegisterScreen = () => {
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
+            placeholder="meuemail@gmail.com"
           />
 
-          <FormInput label="Seu nome" value={name} onChangeText={setName} />
+          <FormInput label="Seu nome" value={name} onChangeText={setName} placeholder="Fulano da Silva"/>
 
           <FormInput
             label="Senha"
@@ -51,6 +52,7 @@ const RegisterScreen = () => {
             secureTextEntry={!showPassword}
             onTogglePassword={() => setShowPassword(!showPassword)}
             showPassword={showPassword}
+            placeholder="*******"
           />
 
           <View style={styles.termsContainer}>

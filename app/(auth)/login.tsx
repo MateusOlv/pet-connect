@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
@@ -10,11 +9,11 @@ import {
   StatusBar,
 } from "react-native";
 import { Link, router } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { FormInput } from "@/components/FormInput";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("@gmail.com");
-  const [password, setPassword] = useState("**********");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
@@ -35,37 +34,23 @@ const LoginScreen = () => {
         </View>
 
         <View style={styles.form}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Email</Text>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                style={styles.input}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
-          </View>
+          <FormInput
+            label="Email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            placeholder="meuemail@gmail.com"
+          />
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Senha</Text>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                style={styles.input}
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry={!showPassword}
-              />
-              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                <Ionicons
-                  name={showPassword ? "eye-outline" : "eye-off-outline"}
-                  size={20}
-                  color="#101010"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
+          <FormInput
+            label="Senha"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!showPassword}
+            onTogglePassword={() => setShowPassword(!showPassword)}
+            showPassword={showPassword}
+            placeholder="*******"
+          />
 
           <TouchableOpacity>
             <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>

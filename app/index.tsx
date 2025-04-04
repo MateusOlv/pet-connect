@@ -7,7 +7,7 @@ export default function Index() {
   // Simulating auth check
   useEffect(() => {
     // Check authentication status here
-    setIsAuthenticated(true);
+    setIsAuthenticated(false);
   }, []);
 
   if (!isAuthenticated) {
