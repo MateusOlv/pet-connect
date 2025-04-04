@@ -31,12 +31,12 @@ export const FormInput: React.FC<FormInputProps> = ({
           style={styles.input}
           value={value}
           onChangeText={onChangeText}
-          secureTextEntry={secureTextEntry}
+          secureTextEntry={secureTextEntry && !showPassword} // Corrigido para considerar showPassword
           keyboardType={keyboardType}
           autoCapitalize="none"
           placeholder={placeholder}
         />
-        {secureTextEntry && onTogglePassword && (
+        {onTogglePassword && (
           <Ionicons
             name={showPassword ? "eye-outline" : "eye-off-outline"}
             size={20}
