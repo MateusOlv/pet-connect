@@ -1,13 +1,18 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import { Redirect } from "expo-router";
+import { useEffect, useState } from "react";
 
+export default function Index() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-const App = () => {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Welcome to PetConnect!</Text>
-        </View>
-    );
-};
+  // Simulating auth check
+  useEffect(() => {
+    // Check authentication status here
+    setIsAuthenticated(false);
+  }, []);
 
-export default App;
+  if (!isAuthenticated) {
+    return <Redirect href="/login" />;
+  }
+
+  return <Redirect href="/(tabs)/home" />;
+}
