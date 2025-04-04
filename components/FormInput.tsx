@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
+    padding: 8,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#D6D6D6",
