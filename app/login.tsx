@@ -9,6 +9,7 @@ import {
   Platform,
   StatusBar,
 } from "react-native";
+import { Link, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 const LoginScreen = () => {
@@ -18,6 +19,7 @@ const LoginScreen = () => {
 
   const handleLogin = () => {
     // Handle login logic
+    router.push("/");
   };
 
   return (
@@ -84,9 +86,11 @@ const LoginScreen = () => {
 
           <View style={styles.registerContainer}>
             <Text style={styles.registerText}>Não tem uma conta? </Text>
-            <TouchableOpacity>
-              <Text style={styles.registerLink}>Registrar</Text>
-            </TouchableOpacity>
+            <Link href="/register" asChild>
+              <TouchableOpacity>
+                <Text style={styles.registerLink}>Registrar</Text>
+              </TouchableOpacity>
+            </Link>
           </View>
         </View>
       </View>
@@ -126,30 +130,30 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   content: {
-    paddingHorizontal: 16, // Reduzido de 24
-    paddingTop: 40, // Reduzido de 76
-    gap: 16, // Reduzido de 32
+    paddingHorizontal: 16,
+    paddingTop: 40,
+    gap: 16,
   },
   header: {
-    gap: 4, // Reduzido de 8
+    gap: 4,
   },
   title: {
-    fontSize: 28, // Reduzido de 32
+    fontSize: 28,
     fontWeight: "600",
     color: "#101010",
-    lineHeight: 36, // Reduzido de 40
+    lineHeight: 36,
   },
   subtitle: {
-    fontSize: 12, // Reduzido de 14
+    fontSize: 12,
     fontWeight: "500",
     color: "#878787",
-    lineHeight: 18, // Reduzido de 20
+    lineHeight: 18,
   },
   form: {
-    gap: 16, // Reduzido de 24
+    gap: 16,
   },
   inputContainer: {
-    gap: 4, // Reduzido de 8
+    gap: 4,
   },
   label: {
     fontSize: 14,
@@ -159,8 +163,8 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 12, // Reduzido de 16
-    borderRadius: 6, // Reduzido de 8
+    padding: 12,
+    borderRadius: 6,
     borderWidth: 1,
     borderColor: "#D6D6D6",
   },
@@ -177,13 +181,13 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     width: "100%",
-    padding: 12, // Reduzido de 16
-    borderRadius: 50, // Reduzido de 99
+    padding: 12,
+    borderRadius: 50,
     backgroundColor: "#FE8C00",
     alignItems: "center",
   },
   loginButtonText: {
-    fontSize: 12, // Reduzido de 14
+    fontSize: 12,
     fontWeight: "600",
     color: "#FFFFFF",
   },
@@ -191,7 +195,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 2, // Reduzido de 4
+    gap: 2,
   },
   registerText: {
     fontSize: 14,
@@ -206,14 +210,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    height: 24, // Reduzido de 36
+    height: 24,
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: 8,
   },
   bottomIndicator: {
-    width: 100, // Reduzido de 134
-    height: 4, // Reduzido de 5
+    width: 100,
+    height: 4,
     backgroundColor: "#101010",
     borderRadius: 100,
   },
