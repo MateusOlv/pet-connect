@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { StatusBarComponent } from "../../components/StatusBar";
 import { HomeHeader } from "../../components/HomeHeader";
 import { CategoryGrid } from "../../components/CategoryGrid";
 import { ProductCard } from "../../components/ProductCard";
@@ -9,7 +8,6 @@ import { BottomNavigation } from "../../components/BottomNavigation";
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <StatusBarComponent />
       <ScrollView style={styles.content}>
         <View style={styles.header}>
           <HomeHeader />

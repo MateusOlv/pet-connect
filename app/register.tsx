@@ -9,9 +9,8 @@ import {
   StatusBar,
 } from "react-native";
 import { Link, router } from "expo-router";
-import { StatusBarComponent } from "../components/StatusBar";
-import { FormInput } from "../components/FormInput";
-import { BottomBar } from "../components/BottomBar";
+import { FormInput } from "@/components/FormInput";
+import { BottomBar } from "@/components/BottomBar";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("joao.evangelista@gmail.com");
@@ -27,8 +26,6 @@ const RegisterScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBarComponent />
-
       <View style={styles.content}>
         <View style={styles.header}>
           <Text style={styles.title}>Crie sua nova conta.</Text>

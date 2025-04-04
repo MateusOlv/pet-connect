@@ -13,7 +13,7 @@ import { Link, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("joao.evangelista@gmail.com");
+  const [email, setEmail] = useState("@gmail.com");
   const [password, setPassword] = useState("**********");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -24,16 +24,7 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.statusBar}>
-        <View style={styles.statusBarContent}>
-          <Text style={styles.timeText}>9:46</Text>
-          <View style={styles.statusBarIcons}>
-            <Ionicons name="cellular" size={17} color="#101010" />
-            <Ionicons name="wifi" size={15} color="#101010" />
-            <Ionicons name="battery-full" size={20} color="#101010" />
-          </View>
-        </View>
-      </View>
+      
 
       <View style={styles.content}>
         <View style={styles.header}>
