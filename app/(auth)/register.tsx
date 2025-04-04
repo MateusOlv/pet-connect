@@ -40,9 +40,10 @@ const RegisterScreen = () => {
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
+            placeholder="meuemail@gmail.com"
           />
 
-          <FormInput label="Seu nome" value={name} onChangeText={setName} />
+          <FormInput label="Seu nome" value={name} onChangeText={setName} placeholder="Fulano da Silva"/>
 
           <FormInput
             label="Senha"
@@ -51,6 +52,7 @@ const RegisterScreen = () => {
             secureTextEntry={!showPassword}
             onTogglePassword={() => setShowPassword(!showPassword)}
             showPassword={showPassword}
+            placeholder="*******"
           />
 
           <View style={styles.termsContainer}>

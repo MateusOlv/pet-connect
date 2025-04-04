@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
@@ -10,12 +9,11 @@ import {
   StatusBar,
 } from "react-native";
 import { Link, router } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
 import { FormInput } from "@/components/FormInput";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("@gmail.com");
-  const [password, setPassword] = useState("**********");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
@@ -25,6 +23,7 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      
 
       <View style={styles.content}>
         <View style={styles.header}>
@@ -39,46 +38,42 @@ const LoginScreen = () => {
             label="Email"
             value={email}
             onChangeText={setEmail}
-            keyboardType="email-address" />
-        </View>
+            keyboardType="email-address"
+            placeholder="meuemail@gmail.com"
+          />
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Senha</Text>
-          <View style={styles.inputWrapper}>
-            <TextInput
-              style={styles.input}
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry={!showPassword} />
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-              <Ionicons
-                name={showPassword ? "eye-outline" : "eye-off-outline"}
-                size={20}
-                color="#101010" />
-            </TouchableOpacity>
+          <FormInput
+            label="Senha"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry={!showPassword}
+            onTogglePassword={() => setShowPassword(!showPassword)}
+            showPassword={showPassword}
+            placeholder="*******"
+          />
+
+          <TouchableOpacity>
+            <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+            <Text style={styles.loginButtonText}>Entrar</Text>
+          </TouchableOpacity>
+
+          <View style={styles.registerContainer}>
+            <Text style={styles.registerText}>Não tem uma conta? </Text>
+            <Link href="/register" asChild>
+              <TouchableOpacity>
+                <Text style={styles.registerLink}>Registrar</Text>
+              </TouchableOpacity>
+            </Link>
           </View>
         </View>
-
-        <TouchableOpacity>
-          <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-          <Text style={styles.loginButtonText}>Entrar</Text>
-        </TouchableOpacity>
-
-        <View style={styles.registerContainer}>
-          <Text style={styles.registerText}>Não tem uma conta? </Text>
-          <Link href="/register" asChild>
-            <TouchableOpacity>
-              <Text style={styles.registerLink}>Registrar</Text>
-            </TouchableOpacity>
-          </Link>
-        </View>
       </View>
-    <View style={styles.bottomBar}>
+
+      <View style={styles.bottomBar}>
         <View style={styles.bottomIndicator} />
-    </View>
+      </View>
     </SafeAreaView>
   );
 };

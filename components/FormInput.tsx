@@ -10,6 +10,7 @@ interface FormInputProps {
   keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
   onTogglePassword?: () => void;
   showPassword?: boolean;
+  placeholder?: string;
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
@@ -20,6 +21,7 @@ export const FormInput: React.FC<FormInputProps> = ({
   keyboardType = "default",
   onTogglePassword,
   showPassword,
+  placeholder
 }) => {
   return (
     <View style={styles.inputContainer}>
@@ -32,6 +34,7 @@ export const FormInput: React.FC<FormInputProps> = ({
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCapitalize="none"
+          placeholder={placeholder}
         />
         {secureTextEntry && onTogglePassword && (
           <Ionicons
