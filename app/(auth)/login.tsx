@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Link, router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { FormInput } from "@/components/FormInput";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("@gmail.com");
@@ -24,7 +25,6 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      
 
       <View style={styles.content}>
         <View style={styles.header}>
@@ -35,60 +35,50 @@ const LoginScreen = () => {
         </View>
 
         <View style={styles.form}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Email</Text>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                style={styles.input}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
-            </View>
-          </View>
+          <FormInput
+            label="Email"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address" />
+        </View>
 
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Senha</Text>
-            <View style={styles.inputWrapper}>
-              <TextInput
-                style={styles.input}
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry={!showPassword}
-              />
-              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                <Ionicons
-                  name={showPassword ? "eye-outline" : "eye-off-outline"}
-                  size={20}
-                  color="#101010"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <TouchableOpacity>
-            <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-            <Text style={styles.loginButtonText}>Entrar</Text>
-          </TouchableOpacity>
-
-          <View style={styles.registerContainer}>
-            <Text style={styles.registerText}>Não tem uma conta? </Text>
-            <Link href="/register" asChild>
-              <TouchableOpacity>
-                <Text style={styles.registerLink}>Registrar</Text>
-              </TouchableOpacity>
-            </Link>
+        <View style={styles.inputContainer}>
+          <Text style={styles.label}>Senha</Text>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={!showPassword} />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              <Ionicons
+                name={showPassword ? "eye-outline" : "eye-off-outline"}
+                size={20}
+                color="#101010" />
+            </TouchableOpacity>
           </View>
         </View>
-      </View>
 
-      <View style={styles.bottomBar}>
-        <View style={styles.bottomIndicator} />
+        <TouchableOpacity>
+          <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.loginButtonText}>Entrar</Text>
+        </TouchableOpacity>
+
+        <View style={styles.registerContainer}>
+          <Text style={styles.registerText}>Não tem uma conta? </Text>
+          <Link href="/register" asChild>
+            <TouchableOpacity>
+              <Text style={styles.registerLink}>Registrar</Text>
+            </TouchableOpacity>
+          </Link>
+        </View>
       </View>
+    <View style={styles.bottomBar}>
+        <View style={styles.bottomIndicator} />
+    </View>
     </SafeAreaView>
   );
 };

@@ -13,11 +13,11 @@ import { FormInput } from "@/components/FormInput";
 import { BottomBar } from "@/components/BottomBar";
 
 const RegisterScreen = () => {
-  const [email, setEmail] = useState("joao.evangelista@gmail.com");
-  const [name, setName] = useState("João Victor Evangelista");
-  const [password, setPassword] = useState("**********");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(true);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   const handleRegister = () => {
     // Handle registration logic
