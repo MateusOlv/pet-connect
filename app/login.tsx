@@ -126,30 +126,30 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   content: {
-    paddingHorizontal: 24,
-    paddingTop: 76,
-    gap: 32,
+    paddingHorizontal: 16, // Reduzido de 24
+    paddingTop: 40, // Reduzido de 76
+    gap: 16, // Reduzido de 32
   },
   header: {
-    gap: 8,
+    gap: 4, // Reduzido de 8
   },
   title: {
-    fontSize: 32,
+    fontSize: 28, // Reduzido de 32
     fontWeight: "600",
     color: "#101010",
-    lineHeight: 40,
+    lineHeight: 36, // Reduzido de 40
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 12, // Reduzido de 14
     fontWeight: "500",
     color: "#878787",
-    lineHeight: 20,
+    lineHeight: 18, // Reduzido de 20
   },
   form: {
-    gap: 24,
+    gap: 16, // Reduzido de 24
   },
   inputContainer: {
-    gap: 8,
+    gap: 4, // Reduzido de 8
   },
   label: {
     fontSize: 14,
@@ -159,8 +159,8 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 16,
-    borderRadius: 8,
+    padding: 12, // Reduzido de 16
+    borderRadius: 6, // Reduzido de 8
     borderWidth: 1,
     borderColor: "#D6D6D6",
   },
@@ -177,13 +177,13 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     width: "100%",
-    padding: 16,
-    borderRadius: 99,
+    padding: 12, // Reduzido de 16
+    borderRadius: 50, // Reduzido de 99
     backgroundColor: "#FE8C00",
     alignItems: "center",
   },
   loginButtonText: {
-    fontSize: 14,
+    fontSize: 12, // Reduzido de 14
     fontWeight: "600",
     color: "#FFFFFF",
   },
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap: 4,
+    gap: 2, // Reduzido de 4
   },
   registerText: {
     fontSize: 14,
@@ -206,14 +206,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    height: 36,
+    height: 24, // Reduzido de 36
     justifyContent: "center",
     alignItems: "center",
     paddingBottom: 8,
   },
   bottomIndicator: {
-    width: 134,
-    height: 5,
+    width: 100, // Reduzido de 134
+    height: 4, // Reduzido de 5
     backgroundColor: "#101010",
     borderRadius: 100,
   },
