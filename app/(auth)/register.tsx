@@ -63,7 +63,11 @@ const RegisterScreen = () => {
             <View style={styles.termsText}>
               <Text style={styles.termsRegularText}>Concordo com os </Text>
               <TouchableOpacity>
-                <Text style={styles.termsLink}>Termos de Serviço</Text>
+                <Link href="/terms" asChild>
+                  <TouchableOpacity>
+                  <Text style={styles.termsLink}>Termos de Serviço</Text>
+                  </TouchableOpacity>
+                </Link>
               </TouchableOpacity>
               <Text style={styles.termsRegularText}> e </Text>
               <TouchableOpacity>
