@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { CartItem } from "../../components/CartItem";
-import { BottomNavigation } from "../../components/BottomNavigation";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function CartScreen() {
@@ -88,7 +87,6 @@ export default function CartScreen() {
           </TouchableOpacity>
         </View>
       </View>
-      <BottomNavigation />
     </SafeAreaView>
   );
 }
