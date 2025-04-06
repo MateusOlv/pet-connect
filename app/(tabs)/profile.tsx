@@ -9,6 +9,7 @@ import {
 import { BackButton } from "@/components/BackButton";
 import { BottomNavigation } from "@/components/BottomNavigation";
 import { Ionicons } from "@expo/vector-icons";
+import { Link } from "expo-router";
 
 export default function ProfileScreen() {
   return (
@@ -69,11 +70,13 @@ export default function ProfileScreen() {
             <Ionicons name="chevron-forward" size={24} color="#C2C2C2" />
           </TouchableOpacity>
         </View>
-
-        <TouchableOpacity style={styles.logoutButton}>
-          <Ionicons name="log-out-outline" size={24} color="#F14141" />
-          <Text style={styles.logoutText}>Sair</Text>
-        </TouchableOpacity>
+        
+        <Link href="/login" asChild>
+          <TouchableOpacity style={styles.logoutButton}>
+            <Ionicons name="log-out-outline" size={24} color="#F14141" />
+            <Text style={styles.logoutText}>Sair</Text>
+          </TouchableOpacity>
+        </Link>
       </ScrollView>
       <BottomNavigation />
     </View>
