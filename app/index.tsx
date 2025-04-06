@@ -8,9 +8,9 @@ export default function Index() {
   // Simulating auth and terms check
   useEffect(() => {
     // Check authentication status here
-    setIsAuthenticated(false);
+    setIsAuthenticated(true);
     // Check terms acceptance status here
-    setHasAcceptedTerms(false);
+    setHasAcceptedTerms(true);
   }, []);
 
   if (!hasAcceptedTerms) {
