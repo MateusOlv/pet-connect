@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   actionsContainer: {
     flexDirection: "row",
     gap: 8,
+    alignItems: "center",
   },
   iconButton: {
     width: 29,

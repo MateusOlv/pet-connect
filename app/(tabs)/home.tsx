@@ -3,7 +3,6 @@ import { View, StyleSheet, ScrollView } from "react-native";
 import { HomeHeader } from "../../components/HomeHeader";
 import { CategoryGrid } from "../../components/CategoryGrid";
 import { ProductCard } from "../../components/ProductCard";
-import { BottomNavigation } from "../../components/BottomNavigation";
 
 export default function HomeScreen() {
   return (
@@ -58,7 +57,6 @@ export default function HomeScreen() {
           />
         </View>
       </ScrollView>
-      <BottomNavigation />
     </View>
   );
 }

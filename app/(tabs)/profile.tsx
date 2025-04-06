@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from "react-native";
 import { BackButton } from "@/components/BackButton";
-import { BottomNavigation } from "@/components/BottomNavigation";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 
@@ -78,7 +77,7 @@ export default function ProfileScreen() {
           </TouchableOpacity>
         </Link>
       </ScrollView>
-      <BottomNavigation />
+
     </View>
   );
 }
