@@ -71,9 +71,6 @@ const LoginScreen = () => {
         </View>
       </View>
 
-      <View style={styles.bottomBar}>
-        <View style={styles.bottomIndicator} />
-      </View>
     </SafeAreaView>
   );
 };

@@ -10,7 +10,6 @@ import {
 } from "react-native";
 import { Link, router } from "expo-router";
 import { FormInput } from "@/components/FormInput";
-import { BottomBar } from "@/components/BottomBar";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
@@ -95,7 +94,7 @@ const RegisterScreen = () => {
         </View>
       </View>
 
-      <BottomBar />
+
     </SafeAreaView>
   );
 };
