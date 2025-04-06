@@ -1,45 +1,41 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter, usePathname } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
 
-export const BottomNavigation = () => {
+export const BottomNavigation: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
+
+  const tabs = [
+    { name: "Home", icon: "home-outline", route: "/(tabs)/home" },
+    { name: "Carrinho", icon: "cart-outline", route: "/(tabs)/cart" },
+    { name: "Perfil", icon: "person-outline", route: "/(tabs)/profile" },
+  ] as const;
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.tab}
-        onPress={() => router.push("/(tabs)/home")}
-      >
-        <Ionicons
-          name={pathname === "/(tabs)/home" ? "home" : "home-outline"}
-          size={24}
-          color={pathname === "/(tabs)/home" ? "#FE8C00" : "#C2C2C2"}
-        />
-        {pathname === "/(tabs)/home" && (
-          <Text style={styles.activeTabText}>Home</Text>
-        )}
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tab}>
-        <Ionicons name="bag-outline" size={24} color="#C2C2C2" />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.tab}>
-        <Ionicons name="chatbubble-outline" size={24} color="#C2C2C2" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.tab}
-        onPress={() => router.push("/(tabs)/profile")}
-      >
-        <Ionicons
-          name={pathname === "/(tabs)/profile" ? "person" : "person-outline"}
-          size={24}
-          color={pathname === "/(tabs)/profile" ? "#FE8C00" : "#C2C2C2"}
-        />
-        {pathname === "/(tabs)/profile" && (
-          <Text style={styles.activeTabText}>Profile</Text>
-        )}
-      </TouchableOpacity>
+      {tabs.map((tab) => (
+        <TouchableOpacity
+          key={tab.name}
+          style={styles.tab}
+          onPress={() => router.push(tab.route)}
+        >
+          <Ionicons
+            name={tab.icon as any}
+            size={24}
+            color={pathname === tab.route ? "#FE8C00" : "#101010"}
+          />
+          <Text
+            style={[
+              styles.tabText,
+              pathname === tab.route && styles.activeTabText,
+            ]}
+          >
+            {tab.name}
+          </Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
@@ -47,29 +43,24 @@ export const BottomNavigation = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 24,
     backgroundColor: "#FFFFFF",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: -2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
-    elevation: 5,
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: "#E5E5E5",
   },
   tab: {
     alignItems: "center",
-    gap: 4,
+    justifyContent: "center",
+    flex: 1,
+  },
+  tabText: {
+    fontSize: 12,
+    color: "#101010",
+    marginTop: 4,
   },
   activeTabText: {
-    fontSize: 12,
     color: "#FE8C00",
   },
 });
