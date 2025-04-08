@@ -103,11 +103,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    paddingTop:15,
   },
   content: {
     paddingHorizontal: 24,
-    paddingTop: 32,
     paddingBottom: 32,
   },
   header: {
@@ -169,8 +168,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "#FE8C00",
     alignItems: "center",
-    marginTop: 24,
-    marginBottom: 24,
   },
   registerButtonText: {
     color: "#FFFFFF",
