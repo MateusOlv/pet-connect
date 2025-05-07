@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "email": "teste@exemplo.com",
+    "name": "Usuário Teste",
+    "password": "123456"
+  },
+  {
+    "id": 2,
+    "email": "admin@petconnect.com",
+    "name": "Administrador",
+    "password": "admin123"
+  },
+  {
+    "id": 3,
+    "email": "souzadandan10@gmail.com",
+    "name": "Danilo chaves",
+    "password": "Dandan221116"
+  },
+  {
+    "id": 4,
+    "email": "souzadandan203@gmail.com",
+    "name": "Danilo de souza",
+    "password": "Dandan221116"
+  },
+  {
+    "id": 5,
+    "email": "souzadandan34@gmail.com",
+    "name": "Danilo de chaves",
+    "password": "Dandan221116"
+  },
+  {
+    "id": 6,
+    "email": "souzadandan24@gmail.com",
+    "name": "Danilo de chaves",
+    "password": "Dandan221116"
+  }
+]
