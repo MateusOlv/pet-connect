@@ -18,11 +18,7 @@ const appointmentRoutes = require('./routes/appointmentRoutes');
 const app = express();
 
 // Middleware CORS
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 // Middleware para processar JSON
 app.use(express.json());

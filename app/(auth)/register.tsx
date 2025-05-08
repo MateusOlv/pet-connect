@@ -228,6 +228,7 @@ const RegisterScreen = () => {
                   showPassword={showPassword}
                   placeholder="*******"
                   error={passwordError}
+                  id="password-input"
                 />
 
                 <View style={styles.termsContainer}>
@@ -241,6 +242,7 @@ const RegisterScreen = () => {
                       setTermsAccepted(!termsAccepted);
                       setTermsError("");
                     }}
+                    testID="checkbox"
                   />
                   <View style={styles.termsText}>
                     <Text style={styles.termsRegularText}>Concordo com os </Text>
