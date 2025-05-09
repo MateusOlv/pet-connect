@@ -99,7 +99,7 @@ const RegisterScreen = () => {
     
     try {
       // URL adaptativa dependendo da plataforma
-      const apiUrl = 'http://localhost:5001/api/users/register';
+      const apiUrl = 'http://10.0.3.3:5001/api/users/register';
       
       console.log('Enviando requisição para:', apiUrl);
       console.log('Dados do formulário:', { email, name, CPF: cpf, password: '***' });

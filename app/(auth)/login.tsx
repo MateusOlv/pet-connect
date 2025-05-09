@@ -55,8 +55,8 @@ const LoginScreen = () => {
     
     try {
       const apiUrl = Platform.OS === 'web' 
-        ? 'http://localhost:5001/api/users/login'
-        : 'http://192.168.1.34:5001/api/users/login';
+        ? 'http://10.0.3.3:5001/api/users/login'
+        : 'http://10.0.3.3:5001/api/users/login';
         
       console.log('Enviando requisição para:', apiUrl);
       console.log('Dados do login:', { email, password: '***' });
