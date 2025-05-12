@@ -268,6 +268,7 @@ const RegisterScreen = () => {
                   style={[styles.registerButton, isLoading && styles.registerButtonDisabled]}
                   onPress={handleRegister}
                   disabled={isLoading}
+                  testID="register-button"
                 >
                   <Text style={styles.registerButtonText}>
                     {isLoading ? "Registrando..." : "Registrar"}
