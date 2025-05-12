@@ -99,7 +99,7 @@ const RegisterScreen = () => {
     
     try {
       // URL adaptativa dependendo da plataforma
-      const apiUrl = 'http://10.0.3.3:5001/api/users/register';
+      const apiUrl = 'http://10.0.3.2:5001/api/users/register';
       
       console.log('Enviando requisição para:', apiUrl);
       console.log('Dados do formulário:', { email, name, CPF: cpf, password: '***' });
@@ -133,9 +133,12 @@ const RegisterScreen = () => {
         
         // Redirecionar para página de login após registro bem-sucedido
         console.log("Registro bem-sucedido, redirecionando para login");
+        Alert.alert("Registro bem-sucedido, você pode fazer login agora!");
         
         // Implementação mais simples e direta de redirecionamento
-        window.location.href = '/login';
+        //window.location.href = '/login';
+
+        router.push("/login");
       } else {
         if (data.message === 'Usuário já existe') {
           setEmailError("Este email já está registrado");
