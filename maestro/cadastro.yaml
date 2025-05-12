@@ -9,7 +9,6 @@ appId: com.helloworld
 - tapOn:
     id: "password-input"
 - inputText: "senhaTeste"
-- hideKeyboard
 - tapOn:
     id: "checkbox"
 - tapOn: "Registrar"
