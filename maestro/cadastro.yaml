@@ -1,7 +1,7 @@
 appId: com.helloworld
 ---
 - tapOn: "meuemail@gmail.com"
-- inputText: "cadastroTeste@gmail.com"
+- inputText: "cadastro_teste@gmail.com"
 - tapOn: "Fulano da Silva"
 - inputText: "Nome Teste"
 - tapOn: "000.000.000-00"
@@ -9,7 +9,8 @@ appId: com.helloworld
 - tapOn:
     id: "password-input"
 - inputText: "senhaTeste"
-- hideKeyboard
+- pressKey: "Enter" 
 - tapOn:
     id: "checkbox"
-- tapOn: "Registrar"
+- tapOn: 
+    id: "register-button"
