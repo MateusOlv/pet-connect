@@ -61,7 +61,7 @@ export default function AddPetScreen() {
 
     try {
       const apiUrl = Platform.OS === 'web' 
-        ? 'http://10.0.3.2:5001/api/pets'
+        ? 'http://localhost:5001/api/pets'
         : 'http://10.0.3.2:5001/api/pets';
 
       const petData = {
