@@ -220,6 +220,7 @@ const LoginScreen = () => {
                   style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
                   onPress={handleLogin}
                   disabled={isLoading}
+                  testID="enter-button"
                 >
                   <Text style={styles.loginButtonText}>
                     {isLoading ? "Entrando..." : "Entrar"}
