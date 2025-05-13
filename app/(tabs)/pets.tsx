@@ -42,7 +42,7 @@ export default function PetsTabScreen() {
       // Definir a URL correta da API
       const apiUrl = Platform.OS === 'web'
         ? 'http://localhost:5001/api/pets'
-        : 'http://192.168.1.34:5001/api/pets';
+        : 'http://10.0.3.2:5001/api/pets';
       
       // Recuperar o token com debug extra
       let token = '';
