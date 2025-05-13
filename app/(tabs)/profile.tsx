@@ -74,7 +74,7 @@ export default function ProfileScreen() {
           const token = localStorage.getItem('token');
           if (token) {
             try {
-              const apiUrl = 'http://localhost:5001/api/users/profile';
+              const apiUrl = 'http://10.0.3.2:5001/api/users/profile';
               const response = await fetch(apiUrl, {
                 headers: {
                   'Authorization': `Bearer ${token}`
@@ -123,7 +123,7 @@ export default function ProfileScreen() {
           const token = await SecureStore.getItemAsync('token');
           if (token) {
             try {
-              const apiUrl = 'http://192.168.1.34:5001/api/users/profile';
+              const apiUrl = 'http://10.0.3.2:5001/api/users/profile';
               const response = await fetch(apiUrl, {
                 headers: {
                   'Authorization': `Bearer ${token}`

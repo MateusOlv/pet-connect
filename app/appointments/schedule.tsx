@@ -67,7 +67,7 @@ export default function ScheduleScreen() {
         // Buscar os dados do pet shop
         const petShopResponse = await fetch(Platform.OS === 'web' 
           ? `http://localhost:5001/api/providers/${id}`
-          : `http://192.168.1.34:5001/api/providers/${id}`, {
+          : `http://10.0.3.2:5001/api/providers/${id}`, {
           headers: {
             "Authorization": `Bearer ${token}`
           },
@@ -76,7 +76,7 @@ export default function ScheduleScreen() {
         // Buscar os pets do usuário
         const petsResponse = await fetch(Platform.OS === 'web'
           ? "http://localhost:5001/api/pets"
-          : "http://192.168.1.34:5001/api/pets", {
+          : "http://10.0.3.2:5001/api/pets", {
           headers: {
             "Authorization": `Bearer ${token}`
           },
@@ -87,7 +87,7 @@ export default function ScheduleScreen() {
         // Buscar os serviços disponíveis
         const servicesResponse = await fetch(Platform.OS === 'web'
           ? "http://localhost:5001/api/services"
-          : "http://192.168.1.34:5001/api/services", {
+          : "http://10.0.3.2:5001/api/services", {
           headers: {
             "Authorization": `Bearer ${token}`
           },
@@ -223,7 +223,7 @@ export default function ScheduleScreen() {
 
       const response = await fetch(Platform.OS === 'web'
         ? "http://localhost:5001/api/appointments"
-        : "http://192.168.1.34:5001/api/appointments", {
+        : "http://10.0.3.2:5001/api/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

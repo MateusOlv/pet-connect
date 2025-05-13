@@ -55,7 +55,7 @@ const LoginScreen = () => {
     
     try {
       const apiUrl = Platform.OS === 'web' 
-        ? 'http://10.0.3.2:5001/api/users/login'
+        ? 'http://localhost:5001/api/users/login'
         : 'http://10.0.3.2:5001/api/users/login';
         
       console.log('Enviando requisição para:', apiUrl);
@@ -220,6 +220,7 @@ const LoginScreen = () => {
                   style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
                   onPress={handleLogin}
                   disabled={isLoading}
+                  testID="enter-button"
                 >
                   <Text style={styles.loginButtonText}>
                     {isLoading ? "Entrando..." : "Entrar"}

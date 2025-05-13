@@ -78,7 +78,7 @@ export default function AppointmentsScreen() {
 
       const apiUrl = Platform.OS === 'web' 
         ? 'http://localhost:5001/api/appointments'
-        : 'http://192.168.1.34:5001/api/appointments';
+        : 'http://10.0.3.2:5001/api/appointments';
 
       const response = await fetch(apiUrl, {
         headers: {
@@ -257,7 +257,7 @@ export default function AppointmentsScreen() {
 
               const apiUrl = Platform.OS === 'web' 
                 ? `http://localhost:5001/api/appointments/${id}`
-                : `http://192.168.1.34:5001/api/appointments/${id}`;
+                : `http://10.0.3.2:5001/api/appointments/${id}`;
 
               const response = await fetch(apiUrl, {
                 method: 'DELETE',

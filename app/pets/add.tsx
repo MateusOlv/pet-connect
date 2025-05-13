@@ -77,7 +77,7 @@ export default function AddPetScreen() {
       // Usar o endereço correto da API de acordo com a plataforma
       const apiUrl = Platform.OS === 'web' 
         ? 'http://localhost:5001/api/pets'
-        : 'http://10.0.2.2:5001/api/pets'; // Usar o IP do emulador Android ou mudar para o IP da máquina
+        : 'http://10.0.3.2:5001/api/pets'; // Usar o IP do emulador Android ou mudar para o IP da máquina
 
       const petData = {
         name,
@@ -139,6 +139,7 @@ export default function AddPetScreen() {
 
       // Cadastro bem-sucedido - redirecionar diretamente sem mostrar Alert
       console.log('Pet cadastrado com sucesso!');
+      Alert.alert("Pet cadastrado com sucesso!")
       
       // Redirecionar para a página de listagem de pets, adaptando para a porta em uso
       if (Platform.OS === 'web') {
@@ -179,6 +180,7 @@ export default function AddPetScreen() {
           <TouchableOpacity 
             style={styles.pickerButton}
             onPress={() => setShowTypePicker(!showTypePicker)}
+            testID="pet-type-picker"
           >
             <Text style={styles.pickerButtonText}>{type}</Text>
             <Ionicons 
@@ -248,6 +250,7 @@ export default function AddPetScreen() {
           style={[styles.submitButton, isLoading && styles.submitButtonDisabled]}
           onPress={handleSubmit}
           disabled={isLoading}
+          testID="submit-button"
         >
           <Text style={styles.submitButtonText}>
             {isLoading ? 'Cadastrando...' : 'Cadastrar Pet'}
