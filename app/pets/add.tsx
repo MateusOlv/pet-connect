@@ -139,6 +139,7 @@ export default function AddPetScreen() {
 
       // Cadastro bem-sucedido - redirecionar diretamente sem mostrar Alert
       console.log('Pet cadastrado com sucesso!');
+      Alert.alert("Pet cadastrado com sucesso!")
       
       // Redirecionar para a página de listagem de pets, adaptando para a porta em uso
       if (Platform.OS === 'web') {
@@ -179,6 +180,7 @@ export default function AddPetScreen() {
           <TouchableOpacity 
             style={styles.pickerButton}
             onPress={() => setShowTypePicker(!showTypePicker)}
+            testID="pet-type-picker"
           >
             <Text style={styles.pickerButtonText}>{type}</Text>
             <Ionicons 
@@ -248,6 +250,7 @@ export default function AddPetScreen() {
           style={[styles.submitButton, isLoading && styles.submitButtonDisabled]}
           onPress={handleSubmit}
           disabled={isLoading}
+          testID="submit-button"
         >
           <Text style={styles.submitButtonText}>
             {isLoading ? 'Cadastrando...' : 'Cadastrar Pet'}

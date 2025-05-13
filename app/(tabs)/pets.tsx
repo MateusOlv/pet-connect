@@ -188,6 +188,7 @@ export default function PetsTabScreen() {
       <TouchableOpacity 
         style={styles.addPetButton}
         onPress={() => router.push('/pets/add')}
+        testID="add-pet-button"
       >
         <Text style={styles.addPetButtonText}>Adicionar Pet</Text>
       </TouchableOpacity>
