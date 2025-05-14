@@ -351,6 +351,7 @@ export default function ScheduleScreen() {
                   selectedPet?._id === pet._id && styles.selectedPetItem,
                 ]}
                 onPress={() => setSelectedPet(pet)}
+                testID="pet-item"
               >
                 <View style={styles.petAvatar}>
                   <Text style={styles.petInitial}>{pet.name.charAt(0)}</Text>
@@ -384,6 +385,7 @@ export default function ScheduleScreen() {
               selectedService?._id === service._id && styles.selectedServiceItem,
             ]}
             onPress={() => setSelectedService(service)}
+            testID="service-item"
           >
             <Text style={styles.serviceName}>{service.name}</Text>
             <Text style={styles.servicePrice}>R$ {service.price.toFixed(2)}</Text>
@@ -402,6 +404,7 @@ export default function ScheduleScreen() {
             selectedDayBackgroundColor: "#FE8C00",
             arrowColor: "#FE8C00",
           }}
+          testID="calendar"
         />
       </View>
 
@@ -440,6 +443,7 @@ export default function ScheduleScreen() {
         ]}
         disabled={!selectedDate || !selectedTime || !selectedPet || !selectedService || pets.length === 0}
         onPress={handleConfirm}
+        testID="confirm-button"
       >
         <Text style={styles.confirmButtonText}>Confirmar Agendamento</Text>
       </TouchableOpacity>
