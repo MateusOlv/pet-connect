@@ -29,3 +29,5 @@ appId: com.helloworld
 
 - tapOn:
     id: "submit-button"
+
+- assertVisible: "Pet cadastrado com sucesso!"
