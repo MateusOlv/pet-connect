@@ -1,0 +1,85 @@
+[
+  {
+    "_id": "pet1",
+    "petId": 1,
+    "userId": 1,
+    "name": "Luna",
+    "type": "Cachorro",
+    "age": 3,
+    "weight": 8,
+    "createdAt": "2025-05-05T08:03:44.037Z"
+  },
+  {
+    "_id": "pet2",
+    "petId": 2,
+    "userId": 1,
+    "name": "Felix",
+    "type": "Gato",
+    "age": 2,
+    "weight": 4,
+    "createdAt": "2025-05-05T08:03:44.085Z"
+  },
+  {
+    "_id": "pet3",
+    "petId": 3,
+    "userId": 2,
+    "name": "Max",
+    "type": "Cachorro",
+    "age": 5,
+    "weight": 12,
+    "createdAt": "2025-05-05T08:03:44.085Z"
+  },
+  {
+    "_id": "pet4",
+    "petId": 4,
+    "userId": 2,
+    "name": "Nina",
+    "type": "Pássaro",
+    "age": 1,
+    "weight": 0.2,
+    "createdAt": "2025-05-05T08:03:44.085Z"
+  },
+  {
+    "_id": "pet5",
+    "petId": 5,
+    "userId": 1,
+    "name": "Rex",
+    "type": "Cachorro",
+    "age": 7,
+    "weight": 25,
+    "createdAt": "2025-05-05T08:03:44.085Z"
+  },
+  {
+    "_id": "pet1746432260761",
+    "petId": 6,
+    "userId": 4,
+    "name": "Luck",
+    "type": "Cachorro",
+    "breed": "Golden",
+    "age": 3,
+    "weight": 2,
+    "createdAt": "2025-05-05T08:04:20.761Z"
+  },
+  {
+    "_id": "pet1746432830819",
+    "petId": 7,
+    "userId": 6,
+    "name": "Rex",
+    "type": "Cachorro",
+    "breed": "Golden",
+    "age": 2,
+    "weight": 8,
+    "createdAt": "2025-05-05T08:13:50.819Z"
+  },
+  {
+    "_id": "pet1746432851676",
+    "petId": 8,
+    "userId": 6,
+    "name": "Bixano",
+    "type": "Gato",
+    "breed": "golden",
+    "age": 2,
+    "weight": 8,
+    "createdAt": "2025-05-05T08:14:11.676Z"
+  }
+]

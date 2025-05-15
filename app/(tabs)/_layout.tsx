@@ -25,6 +25,12 @@ export default function TabsLayout() {
               <Icon name="home" size={20} color={color} />
             ),
         }} />
+      <Tabs.Screen name="services" options={{ 
+            title: "Serviços",
+            tabBarIcon: ({ color }) => (
+                <Icon name="paw" size={20} color={color} />
+            ),
+        }} />
       <Tabs.Screen name="cart" options={{ 
             title: "Carrinho",
             tabBarIcon: ({ color }) => (
@@ -37,6 +43,16 @@ export default function TabsLayout() {
                 <Icon name="person" size={20} color={color} />
             ), 
         }} />
+      
+      {/* Tela de pets visível na navegação por abas */}
+      <Tabs.Screen name="pets" options={{ 
+        title: "Meus Pets",
+        tabBarIcon: ({ color }) => (
+          <Icon name="paw-outline" size={20} color={color} />
+        ),
+      }} />
+      
+      <Tabs.Screen name="addPet" options={{ href: null }} />
     </Tabs>
   );
 }

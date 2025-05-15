@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { ReactNode } from "react";
+import { View, Text, StyleSheet, Image, TouchableOpacity, ImageSourcePropType } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 interface ProductCardProps {
@@ -7,7 +7,7 @@ interface ProductCardProps {
   rating: number;
   distance: string;
   price: string;
-  image: string;
+  image: (() => ReactNode) | ImageSourcePropType | null;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
@@ -17,9 +17,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   price,
   image,
 }) => {
+  // Renderizar o conteúdo da imagem baseado no tipo
+  const renderImage = () => {
+    if (typeof image === 'function') {
+      return (
+        <View style={[styles.image, styles.iconContainer]}>
+          {image()}
+        </View>
+      );
+    } else if (image) {
+      return <Image source={image} style={styles.image} />;
+    } else {
+      return (
+        <View style={[styles.image, styles.placeholderImage]}>
+          <Text style={styles.placeholderText}>{title.substring(0, 1)}</Text>
+        </View>
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Image source={{ uri: image }} style={styles.image} />
+      {renderImage()}
       <View style={styles.content}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
@@ -54,6 +73,21 @@ const styles = StyleSheet.create({
     height: 124,
     marginBottom: 8,
     borderRadius: 8,
+  },
+  iconContainer: {
+    backgroundColor: "#F0F0F0",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  placeholderImage: {
+    backgroundColor: "#D9D9D9",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  placeholderText: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#999999",
   },
   content: {
     flexDirection: "column",

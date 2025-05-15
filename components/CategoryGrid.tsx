@@ -3,10 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   TouchableOpacity,
   Dimensions,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const windowWidth = Dimensions.get("window").width;
 const gridPadding = 24;
@@ -16,13 +16,14 @@ const availableWidth =
   windowWidth - gridPadding * 2 - (numberOfColumns - 1) * gridGap;
 const itemWidth = availableWidth / numberOfColumns;
 
+// Categorias com ícones do Ionicons
 const categories = [
-  { id: 1, title: "Rações", image: "https://cdn.builder.io/api/v1/image/assets/TEMP/c485c2979ac54c6cac8c2f4e1b6f095e7262d17f", isMain: true },
-  { id: 2, title: "Acessórios", image: "https://cdn.builder.io/api/v1/image/assets/TEMP/41729044461ec754b439ddec55bf2050f24b2b39", isMain: true },
-  { id: 3, title: "Banho e Tosa", image: "https://cdn.builder.io/api/v1/image/assets/TEMP/b45a36da7e56cf45c6575e1bba44a936c52b7a9a" },
-  { id: 4, title: "Pet Shop", image: "https://cdn.builder.io/api/v1/image/assets/TEMP/dd88683b186c5d28a56c05ef92f87c8a8ce0cd01" },
-  { id: 5, title: "Lembretes", image: "https://cdn.builder.io/api/v1/image/assets/TEMP/047dea9cf35a2720075cc45465ad9d807beee7fd" },
-  { id: 6, title: "Hóspet", image: "https://cdn.builder.io/api/v1/image/assets/TEMP/fae18511cfc30143a51fb2c7a7fa25eff4c34bf8" },
+  { id: 1, title: "Rações", icon: "nutrition-outline" as any, color: "#FF9933", isMain: true },
+  { id: 2, title: "Acessórios", icon: "paw-outline" as any, color: "#3366FF", isMain: true },
+  { id: 3, title: "Banho e Tosa", icon: "water-outline" as any, color: "#33CCFF" },
+  { id: 4, title: "Pet Shop", icon: "storefront-outline" as any, color: "#FF6633" },
+  { id: 5, title: "Lembretes", icon: "calendar-outline" as any, color: "#66CC33" },
+  { id: 6, title: "Hóspet", icon: "home-outline" as any, color: "#CC66FF" },
 ];
 
 export const CategoryGrid = () => {
@@ -35,22 +36,18 @@ export const CategoryGrid = () => {
         {mainCategories.map((category) => (
           <TouchableOpacity key={category.id} style={styles.mainCategory}>
             <Text style={styles.mainCategoryTitle}>{category.title}</Text>
-            <Image
-              source={{ uri: category.image }}
-              style={styles.mainCategoryImage}
-              resizeMode="contain"
-            />
+            <View style={styles.iconContainer}>
+              <Ionicons name={category.icon} size={48} color={category.color} />
+            </View>
           </TouchableOpacity>
         ))}
       </View>
       <View style={styles.subCategories}>
         {subCategories.map((category) => (
           <TouchableOpacity key={category.id} style={styles.subCategory}>
-            <Image
-              source={{ uri: category.image }}
-              style={styles.subCategoryImage}
-              resizeMode="contain"
-            />
+            <View style={styles.iconContainerSmall}>
+              <Ionicons name={category.icon} size={30} color={category.color} />
+            </View>
             <Text style={styles.subCategoryTitle}>{category.title}</Text>
           </TouchableOpacity>
         ))}
@@ -85,12 +82,14 @@ const styles = StyleSheet.create({
     color: "#101010",
     zIndex: 1,
   },
-  mainCategoryImage: {
+  iconContainer: {
     position: "absolute",
     right: 10,
-    top: 1.5,
-    width: 82,
-    height: 82,
+    top: 10,
+    width: 70,
+    height: 70,
+    justifyContent: "center",
+    alignItems: "center",
   },
   subCategories: {
     flexDirection: "row",
@@ -108,11 +107,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
   },
-  subCategoryImage: {
+  iconContainerSmall: {
     width: "70%",
-    height: "80%",
-    position: "absolute",
-    top: 5,
+    height: "65%",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 5,
   },
   subCategoryTitle: {
     position: "absolute",
