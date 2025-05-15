@@ -1,0 +1,12 @@
+appId: com.helloworld
+---
+- tapOn:
+    id: "email-input"
+- inputText: "cadastro_teste@gmail.com"
+- tapOn:
+    id: "password-input"
+- inputText: "senhaTeste"
+- pressKey: "Enter"
+- tapOn:
+    id: "enter-button"
+- assertVisible: "Início"

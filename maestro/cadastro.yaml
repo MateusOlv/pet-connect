@@ -1,0 +1,17 @@
+appId: com.helloworld
+---
+- tapOn: "meuemail@gmail.com"
+- inputText: "cadastro_teste@gmail.com"
+- tapOn: "Fulano da Silva"
+- inputText: "Nome Teste"
+- tapOn: "000.000.000-00"
+- inputText: "627.839.028-01"
+- tapOn:
+    id: "password-input"
+- inputText: "senhaTeste"
+- pressKey: "Enter" 
+- tapOn:
+    id: "checkbox"
+- tapOn: 
+    id: "register-button"
+- assertVisible: "Registro bem-sucedido, você pode fazer login agora!"

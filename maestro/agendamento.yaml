@@ -1,0 +1,18 @@
+appId: com.helloworld
+---
+- tapOn: "Serviços"
+- tapOn: "Banho & Tosa"
+- tapOn: "Pet Shop Brasília"
+- tapOn:
+    id: "pet-item"
+- tapOn:
+    id: "service-item"
+- scroll
+- scroll
+- tapOn: "15"
+- scroll
+- scroll
+- tapOn: "14:00"
+- tapOn:
+    id: "confirm-button"
+- assertVisible: "Agendamento confirmado com sucesso!"
