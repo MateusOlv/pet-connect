@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { CartItem } from "../../components/CartItem";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 export default function CartScreen() {
   const [cartItems, setCartItems] = useState([
@@ -82,7 +83,7 @@ export default function CartScreen() {
               {`R$ ${total.toFixed(2).replace(".", ",")}`}
             </Text>
           </View>
-          <TouchableOpacity style={styles.checkoutButton}>
+          <TouchableOpacity style={styles.checkoutButton} onPress={() => router.push("/payment")}>
             <Text style={styles.checkoutButtonText}>Finalizar Compra</Text>
           </TouchableOpacity>
         </View>

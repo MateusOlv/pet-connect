@@ -53,6 +53,8 @@ export default function TabsLayout() {
       }} />
       
       <Tabs.Screen name="addPet" options={{ href: null }} />
+
+      <Tabs.Screen name="payment" options={{ href: null}}/>
     </Tabs>
   );
 }
