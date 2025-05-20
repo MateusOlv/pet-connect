@@ -172,6 +172,7 @@ Acesse no navegador:
 - `/api/users/profile` - Obter perfil do usuário autenticado
 - `/api/pets` - Listar e cadastrar pets
 - `/api/services` - Listar serviços disponíveis
+- `/api/product` - Listar e cadastrar produtos
 
 ### Frontend
 - `/login` - Página de login
