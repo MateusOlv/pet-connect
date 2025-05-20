@@ -113,9 +113,10 @@ const styles = StyleSheet.create({
   },
   footer: {
     paddingVertical: 24,
-    borderTopWidth: 1,
-    borderTopColor: "#E5E5E5",
+    borderRadius: 20,
     backgroundColor: "#FFFFFF",
+    paddingHorizontal: 10,
+    marginBottom: 10,
   },
   totalContainer: {
     flexDirection: "row",
