@@ -3,7 +3,7 @@ const Product = require('../models/Product');
 // Listar todos os produtos
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate('provider', 'name CNPJ _id');
 
     res.status(200).json(products);
   } catch (error) {
@@ -16,7 +16,8 @@ exports.getProductById = async (req, res) => {
   try {
     const productId = req.params.id;
 
-    const product = await Product.findById(productId);
+    const product = await Product.findById(productId).populate('provider', 'name CNPJ _id');
+
     if (!product) {
       return res.status(404).json({ message: 'Produto não encontrado' });
     }
@@ -30,7 +31,7 @@ exports.getProductById = async (req, res) => {
 // Criar um novo produto
 exports.createProduct = async (req, res) => {
   try {
-    const { name, imageUrl, description, price } = req.body;
+    const { name, imageUrl, description, price, provider } = req.body;
 
     const productId = await Product.getNextProductId();
     
@@ -39,7 +40,8 @@ exports.createProduct = async (req, res) => {
       name,
       imageUrl,
       description,
-      price
+      price,
+      provider
     });
 
     await newProduct.save();

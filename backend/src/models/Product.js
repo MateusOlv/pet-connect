@@ -22,6 +22,11 @@ const ProductSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    provider: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ServiceProvider',
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now
