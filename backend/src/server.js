@@ -14,6 +14,7 @@ const serviceRoutes = require('./routes/serviceRoutes');
 const serviceProviderRoutes = require('./routes/serviceProviderRoutes');
 const appointmentRoutes = require('./routes/appointmentRoutes');
 const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 
 // Inicializar o app
 const app = express();
@@ -39,7 +40,8 @@ app.use('/api/pets', petRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/providers', serviceProviderRoutes);
 app.use('/api/appointments', appointmentRoutes);
-app.use('/api/product', productRoutes)
+app.use('/api/product', productRoutes);
+app.use('/api/cart', cartRoutes);
 
 // Rota de teste
 app.get('/', (req, res) => {
