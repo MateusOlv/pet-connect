@@ -5,7 +5,6 @@ const Service = require('../models/Service');
 exports.getAllProviders = async (req, res) => {
   try {
     const providers = await ServiceProvider.find()
-      .select('-products'); // Não retorna a lista de produtos, já que não estamos implementando esta parte
 
     res.status(200).json(providers);
   } catch (error) {
