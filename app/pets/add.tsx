@@ -77,7 +77,7 @@ export default function AddPetScreen() {
       // Usar o endereço correto da API de acordo com a plataforma
       const apiUrl = Platform.OS === 'web' 
         ? 'http://localhost:5001/api/pets'
-        : 'http://10.0.3.2:5001/api/pets'; // Usar o IP do emulador Android ou mudar para o IP da máquina
+        : 'http://192.168.87.216:5001/api/pets'; // Usar o IP do emulador Android ou mudar para o IP da máquina
 
       const petData = {
         name,

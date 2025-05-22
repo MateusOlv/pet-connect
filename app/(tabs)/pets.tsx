@@ -8,7 +8,8 @@ import {
   Image,
   ActivityIndicator,
   Alert,
-  Platform
+  Platform,
+  SafeAreaView
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -42,7 +43,7 @@ export default function PetsTabScreen() {
       // Definir a URL correta da API
       const apiUrl = Platform.OS === 'web'
         ? 'http://localhost:5001/api/pets'
-        : 'http://10.0.3.2:5001/api/pets';
+        : 'http://192.168.87.216:5001/api/pets';
       
       // Recuperar o token com debug extra
       let token = '';
@@ -234,7 +235,7 @@ export default function PetsTabScreen() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <BackButton />
         <Text style={styles.headerTitle}>Meus Pets</Text>
@@ -263,7 +264,7 @@ export default function PetsTabScreen() {
           contentContainerStyle={styles.listContainer}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 }
 

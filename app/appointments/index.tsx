@@ -78,7 +78,7 @@ export default function AppointmentsScreen() {
 
       const apiUrl = Platform.OS === 'web' 
         ? 'http://localhost:5001/api/appointments'
-        : 'http://10.0.3.2:5001/api/appointments';
+        : 'http://192.168.87.216:5001/api/appointments';
 
       const response = await fetch(apiUrl, {
         headers: {

@@ -27,7 +27,7 @@ export default function PetShopsScreen() {
         return;
       }
 
-      const response = await fetch('http://10.0.3.2:5001/api/providers', {
+      const response = await fetch('http://192.168.87.216:5001/api/providers', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
