@@ -1,59 +1,234 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Alert,
+  Platform,
 } from "react-native";
 import { CartItem } from "../../components/CartItem";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import * as SecureStore from 'expo-secure-store';
+
+type CartItemType = {
+  id: string;
+  image: string;
+  name: string;
+  price: string; // Ex.: "R$ 99,90"
+  quantity: number;
+};
 
 export default function CartScreen() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/343c1609834abbb69080988de63a2768ce9971cb",
-      title: "Ração Premium",
-      price: "R$ 143,90",
-      quantity: 1,
-    },
-    {
-      id: 2,
-      image:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/e99b7319c323cb349d674b033495dc64c6202b83",
-      title: "Ração Seca Friskies",
-      price: "R$ 60,00",
-      quantity: 1,
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItemType[]>([]);
 
-  const handleIncrement = (id: number) => {
-    setCartItems((items) =>
-      items.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-      ),
-    );
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  const apiUrl = Platform.OS === 'web'
+    ? 'http://localhost:5001/api'
+    : 'http://192.168.87.216:5001/api';
+
+
+  const fetchCart = async () => {
+    try {
+      // Recuperar o token com debug extra
+      let token = '';
+
+      if (Platform.OS === 'web') {
+        token = localStorage.getItem('token') || '';
+        console.log('Token recuperado (web):', token ? 'Token existe' : 'Token não existe');
+
+        // Debug para LocalStorage
+        console.log('---- DEBUG LOCALSTORAGE ----');
+        console.log('userId:', localStorage.getItem('userId'));
+        console.log('userName:', localStorage.getItem('userName'));
+        console.log('userEmail:', localStorage.getItem('userEmail'));
+      } else {
+        token = await SecureStore.getItemAsync('token') || '';
+        console.log('Token recuperado (mobile):', token ? 'Token existe' : 'Token não existe');
+      }
+
+      // Se não houver token, redirecionar para login
+      if (!token) {
+        console.log('Token não encontrado, redirecionando para login');
+
+        // Redirecionar para login após um breve atraso
+        setTimeout(() => {
+          if (Platform.OS === 'web') {
+            window.location.href = '/login';
+          } else {
+            router.replace('/login');
+          }
+        }, 1500);
+        return;
+      }
+
+      console.log('Buscando itens na URL:', apiUrl);
+      console.log('Headers:', { 'Authorization': `Bearer ${token ? 'token_presente' : 'token_ausente'}` });
+
+
+      const response = await fetch(`${apiUrl}/cart`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setCartItems(
+          data.items.map((item: { product: { _id: any; imageUrl: any; name: any; price: number; }; quantity: any; }) => ({
+            id: item.product._id,
+            image: item.product.imageUrl,
+            name: item.product.name,
+            price: `R$ ${item.product.price.toFixed(2).replace(".", ",")}`,
+            quantity: item.quantity,
+          }))
+        );
+      } else {
+        Alert.alert("Erro", data.message);
+      }
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível carregar o carrinho");
+    }
   };
 
-  const handleDecrement = (id: number) => {
-    setCartItems((items) =>
-      items.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item,
-      ),
-    );
+  const updateCart = async (productId: string, quantity: number) => {
+    try {
+      // Recuperar o token com debug extra
+      let token = '';
+
+      if (Platform.OS === 'web') {
+        token = localStorage.getItem('token') || '';
+        console.log('Token recuperado (web):', token ? 'Token existe' : 'Token não existe');
+
+        // Debug para LocalStorage
+        console.log('---- DEBUG LOCALSTORAGE ----');
+        console.log('userId:', localStorage.getItem('userId'));
+        console.log('userName:', localStorage.getItem('userName'));
+        console.log('userEmail:', localStorage.getItem('userEmail'));
+      } else {
+        token = await SecureStore.getItemAsync('token') || '';
+        console.log('Token recuperado (mobile):', token ? 'Token existe' : 'Token não existe');
+      }
+
+      // Se não houver token, redirecionar para login
+      if (!token) {
+        console.log('Token não encontrado, redirecionando para login');
+
+        // Redirecionar para login após um breve atraso
+        setTimeout(() => {
+          if (Platform.OS === 'web') {
+            window.location.href = '/login';
+          } else {
+            router.replace('/login');
+          }
+        }, 1500);
+        return;
+      }
+
+      const response = await fetch(`${apiUrl}/cart/add`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId, quantity }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        Alert.alert("Erro", data.message);
+      } else {
+        fetchCart(); // Atualiza o carrinho
+      }
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível atualizar o carrinho");
+    }
+  };
+
+  const removeFromCart = async (productId: string) => {
+    try {
+
+      // Recuperar o token com debug extra
+      let token = '';
+
+      if (Platform.OS === 'web') {
+        token = localStorage.getItem('token') || '';
+        console.log('Token recuperado (web):', token ? 'Token existe' : 'Token não existe');
+
+        // Debug para LocalStorage
+        console.log('---- DEBUG LOCALSTORAGE ----');
+        console.log('userId:', localStorage.getItem('userId'));
+        console.log('userName:', localStorage.getItem('userName'));
+        console.log('userEmail:', localStorage.getItem('userEmail'));
+      } else {
+        token = await SecureStore.getItemAsync('token') || '';
+        console.log('Token recuperado (mobile):', token ? 'Token existe' : 'Token não existe');
+      }
+
+      // Se não houver token, redirecionar para login
+      if (!token) {
+        console.log('Token não encontrado, redirecionando para login');
+
+        // Redirecionar para login após um breve atraso
+        setTimeout(() => {
+          if (Platform.OS === 'web') {
+            window.location.href = '/login';
+          } else {
+            router.replace('/login');
+          }
+        }, 1500);
+        return;
+      }
+
+      const response = await fetch(`${apiUrl}/cart/${productId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        Alert.alert("Erro", data.message);
+      } else {
+        fetchCart(); // Atualiza o carrinho
+      }
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível remover o produto");
+    }
+  };
+
+  const handleIncrement = (id: string) => {
+    const item = cartItems.find((item) => item.id === id);
+    if (item) {
+      updateCart(id, 1);
+    }
+  };
+
+  const handleDecrement = (id: string) => {
+    const item = cartItems.find((item) => item.id === id);
+    if (item && item.quantity > 1) {
+      updateCart(id, -1);
+    } else {
+      removeFromCart(id);
+    }
   };
 
   const total = cartItems.reduce(
     (sum, item) =>
       sum +
       parseFloat(item.price.replace("R$ ", "").replace(",", ".")) *
-        item.quantity,
-    0,
+      item.quantity,
+    0
   );
 
   return (
@@ -68,7 +243,7 @@ export default function CartScreen() {
             <CartItem
               key={item.id}
               image={item.image}
-              title={item.title}
+              title={item.name}
               price={item.price}
               quantity={item.quantity}
               onIncrement={() => handleIncrement(item.id)}
@@ -83,7 +258,10 @@ export default function CartScreen() {
               {`R$ ${total.toFixed(2).replace(".", ",")}`}
             </Text>
           </View>
-          <TouchableOpacity style={styles.checkoutButton} onPress={() => router.push("/payment")}>
+          <TouchableOpacity
+            style={styles.checkoutButton}
+            onPress={() => router.push("/payment")}
+          >
             <Text style={styles.checkoutButtonText}>Finalizar Compra</Text>
           </TouchableOpacity>
         </View>

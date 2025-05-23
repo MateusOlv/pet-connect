@@ -67,7 +67,7 @@ export default function ScheduleScreen() {
         // Buscar os dados do pet shop
         const petShopResponse = await fetch(Platform.OS === 'web' 
           ? `http://localhost:5001/api/providers/${id}`
-          : `http://10.0.3.2:5001/api/providers/${id}`, {
+          : `http://192.168.87.216:5001/api/providers/${id}`, {
           headers: {
             "Authorization": `Bearer ${token}`
           },
