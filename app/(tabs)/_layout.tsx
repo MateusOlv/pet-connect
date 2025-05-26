@@ -51,7 +51,13 @@ export default function TabsLayout() {
           <Icon name="paw-outline" size={20} color={color} />
         ),
       }} />
-      
+      <Tabs.Screen name="paginadeescolhadepetshop" options={{ 
+            title: "petshop",
+            tabBarIcon: ({ color }) => (
+                <Icon name="shop" size={20} color={color} />
+            ), 
+        }} />
+
       <Tabs.Screen name="addPet" options={{ href: null }} />
 
       <Tabs.Screen name="payment" options={{ href: null}}/>
