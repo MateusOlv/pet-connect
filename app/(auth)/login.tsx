@@ -15,6 +15,7 @@ import {
 import { Link, router } from "expo-router";
 import { FormInput } from "@/components/FormInput";
 import * as SecureStore from 'expo-secure-store';
+import { WEB_API_URL, MOBILE_API_URL } from "@/services/api";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -55,8 +56,8 @@ const LoginScreen = () => {
     
     try {
       const apiUrl = Platform.OS === 'web' 
-        ? 'http://localhost:5001/api/users/login'
-        : 'http://192.168.87.216:5001/api/users/login';
+        ? `${WEB_API_URL}/users/login`
+        : `${MOBILE_API_URL}/users/login`;
         
       console.log('Enviando requisição para:', apiUrl);
       console.log('Dados do login:', { email, password: '***' });
