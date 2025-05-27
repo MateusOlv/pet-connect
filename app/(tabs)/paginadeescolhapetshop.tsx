@@ -1,206 +1,181 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
-import { MaterialIcons, FontAwesome, Feather, Entypo } from '@expo/vector-icons';
+import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { Ionicons, Feather } from '@expo/vector-icons';
 
-const products = [
-  {
-    name: 'Ração Premium',
-    //image: require('@/assets/images/back.png'),  substitua com imagem local ou URL remota
-    rating: 4.9,
-    distance: '190m',
-    price: 'R$143,90'
-  },
-  {
-    name: 'Ração Seca Friskies',
-    //image: require('./assets/friskies.png'),
-    rating: 4.8,
-    distance: '200m',
-    price: 'R$60,00'
-  },
-];
-
-export default function HomeScreen() {
+export default function PetShopScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <View>
-          <Text style={styles.locationText}>Sua Localização</Text>
-          <View style={styles.locationRow}>
-            <MaterialIcons name="location-on" size={18} color="#f97316" />
-            <Text style={styles.cityText}>Brasília, DF</Text>
-          </View>
+        <TouchableOpacity>
+          <Ionicons name="chevron-back" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Brasília,DF</Text>
+        <View style={styles.headerIcons}>
+          <Feather name="more-vertical" size={24} color="white" />
         </View>
-        <View style={styles.iconsRow}>
-          <Feather name="search" size={22} color="#f97316" style={styles.icon} />
-          <Feather name="bell" size={22} color="#f97316" />
-        </View>
+      </View>
+
+      {/* Search Bar */}
+      <View style={styles.searchBar}>
+        <Feather name="search" size={20} color="#999" style={{ marginLeft: 10 }} />
+        <TextInput
+          placeholder="Buscar em PetShop"
+          style={styles.searchInput}
+          placeholderTextColor="#999"
+        />
       </View>
 
       {/* Categories */}
       <View style={styles.categoriesContainer}>
-        {['Rações', 'Acessórios', 'Banho e Tosa', 'Pet Shop', 'Lembretes', 'Hóspet'].map((item, idx) => (
-          <View key={idx} style={styles.categoryBox}>
-            <Text style={styles.categoryText}>{item}</Text>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {categories.map((item, index) => (
+            <View key={index} style={styles.categoryItem}>
+              <Image source={item.icon} style={styles.categoryIcon} />
+              <Text style={styles.categoryText}>{item.label}</Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
+
+      {/* Shops */}
+      <View style={styles.shopsContainer}>
+        {shops.map((shop, index) => (
+          <View key={index} style={styles.shopCard}>
+            <Image source={shop.logo} style={styles.shopLogo} />
+            <View style={styles.shopInfo}>
+              <Text style={styles.shopName}>{shop.name}</Text>
+              <Text style={styles.shopTime}>{shop.time}</Text>
+            </View>
+            <View style={styles.couponTag}>
+              <Text style={styles.couponText}>{shop.coupon}</Text>
+            </View>
           </View>
         ))}
       </View>
 
-      {/* Products */}
-      <FlatList
-        data={products}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={2}
-        contentContainerStyle={styles.productsList}
-        renderItem={({ item }) => (
-          <View style={styles.productCard}>
-            <TouchableOpacity style={styles.heartIcon}>
-              <FontAwesome name="heart-o" size={18} color="red" />
-            </TouchableOpacity>
-            <Text style={styles.productName}>{item.name}</Text>
-            <Text style={styles.productDetails}>⭐ {item.rating} · {item.distance}</Text>
-            <Text style={styles.productPrice}>{item.price}</Text>
-          </View>
-        )}
-      />
-
-      {/* Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <View style={styles.navItemActive}>
-          <Entypo name="home" size={20} color="#f97316" />
-          <Text style={styles.navTextActive}>Home</Text>
-        </View>
-        <View style={styles.navItem}>
-          <MaterialIcons name="calendar-today" size={20} color="#9ca3af" />
-          <Text style={styles.navText}>Agenda</Text>
-        </View>
-        <View style={styles.navItem}>
-          <Feather name="message-circle" size={20} color="#9ca3af" />
-          <Text style={styles.navText}>Chat</Text>
-        </View>
-        <View style={styles.navItem}>
-          <Feather name="user" size={20} color="#9ca3af" />
-          <Text style={styles.navText}>Perfil</Text>
-        </View>
-      </View>
-    </SafeAreaView>
+    </View>
   );
 }
+
+const categories = [
+  { icon: require('@/assets/images/image.png'), label: 'Ofertas\nDa Semana' },
+  { icon: require('@/assets/images/pet-illustration.png'), label: 'Cães' },
+  { icon: require('@/assets/images/pet-illustration.png'), label: 'Gatos' },
+  { icon: require('@/assets/images/pet-illustration.png'), label: 'Outros Pets' },
+  { icon: require('@/assets/images/pet-illustration.png'), label: 'Farma Pet' },
+  { icon: require('@/assets/images/pet-illustration.png'), label: 'Higiene Pet' },
+  { icon: require('@/assets/images/pet-illustration.png'), label: 'Para o\nseu Filhote' },
+];
+
+const shops = [
+  { logo: require('@/assets/images/pet-illustration.png'), name: 'PetShop Cobalt', time: 'A partir de 1h32min', coupon: 'Cupom de R$ 15' },
+  { logo: require('@/assets/images/pet-illustration.png'), name: 'Casa do Pet', time: 'A partir de 1h36min', coupon: 'Cupom de R$ 15' },
+  { logo: require('@/assets/images/pet-illustration.png'), name: 'Home Pets', time: 'A partir de 1h38min', coupon: 'Cupom de R$ 15' },
+  { logo: require('@/assets/images/pet-illustration.png'), name: 'PetShop Vegans', time: 'Amanhã, a partir das 9h', coupon: 'Cupom de R$ 25' },
+];
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
-    paddingTop: 48,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    paddingTop: 50,
+    paddingHorizontal: 15,
   },
   header: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 20
   },
-  locationText: {
-    color: '#6b7280',
-    fontSize: 12
+  headerText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    flex: 1,
+    textAlign: 'center',
   },
-  locationRow: {
+  headerIcons: {
+    width: 24,
+  },
+  searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 2
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
+    marginTop: 20,
+    paddingVertical: 10,
   },
-  cityText: {
-    fontWeight: 'bold',
-    fontSize: 14
-  },
-  iconsRow: {
-    flexDirection: 'row',
-    gap: 16
-  },
-  icon: {
-    marginRight: 8
+  searchInput: {
+    flex: 1,
+    marginLeft: 10,
+    fontSize: 14,
   },
   categoriesContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginBottom: 20
+    marginTop: 20,
   },
-  categoryBox: {
-    backgroundColor: '#f3f4f6',
-    borderRadius: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    marginRight: 8,
-    marginBottom: 8
+  categoryItem: {
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  categoryIcon: {
+    width: 60,
+    height: 60,
+    marginBottom: 5,
   },
   categoryText: {
     fontSize: 12,
-    textAlign: 'center'
+    textAlign: 'center',
   },
-  productsList: {
-    paddingBottom: 80
+  shopsContainer: {
+    marginTop: 30,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-  productCard: {
-    flex: 1,
-    margin: 4,
-    backgroundColor: '#fff',
+  shopCard: {
+    width: '48%',
+    backgroundColor: '#f9f9f9',
     borderRadius: 10,
-    padding: 8,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 1,
-    position: 'relative'
+    padding: 10,
+    marginBottom: 15,
   },
-  productImage: {
-    width: '100%',
-    height: 100,
-    borderRadius: 8
+  shopLogo: {
+    width: 40,
+    height: 40,
+    resizeMode: 'contain',
   },
-  heartIcon: {
-    position: 'absolute',
-    top: 8,
-    right: 8
+  shopInfo: {
+    marginTop: 10,
   },
-  productName: {
+  shopName: {
+    fontSize: 14,
     fontWeight: '600',
-    marginTop: 8,
-    fontSize: 14
   },
-  productDetails: {
+  shopTime: {
     fontSize: 12,
-    color: '#6b7280'
+    color: '#888',
   },
-  productPrice: {
-    color: '#f97316',
+  couponTag: {
+    marginTop: 10,
+    backgroundColor: '#e7fce7',
+    paddingVertical: 4,
+    paddingHorizontal: 6,
+    borderRadius: 4,
+    alignSelf: 'flex-start',
+  },
+  couponText: {
+    fontSize: 11,
+    color: 'green',
     fontWeight: 'bold',
-    marginTop: 4,
-    fontSize: 14
   },
-  bottomNav: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#fff',
+  bottomProducts: {
+    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#e5e7eb'
+    alignItems: 'center',
   },
-  navItem: {
-    alignItems: 'center'
+  bottomProductImage: {
+    width: 50,
+    height: 70,
+    resizeMode: 'contain',
   },
-  navItemActive: {
-    alignItems: 'center'
-  },
-  navText: {
-    fontSize: 10,
-    color: '#9ca3af'
-  },
-  navTextActive: {
-    fontSize: 10,
-    color: '#f97316'
-  }
 });
