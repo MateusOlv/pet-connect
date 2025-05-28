@@ -56,6 +56,18 @@ sudo apt update
 sudo apt install -y mongodb
 sudo systemctl start mongodb
 ```
+### 4. Conexão do Frontend com API backend
+**Passos:**
+1. Crie a pasta 'services' na raiz do projeto.
+2. Dentro da pasta 'services', crie o arquivo 'api.js'
+3. No arquivo 'api.js', adicione o seguinte trecho de código:
+
+```js
+const WEB_API_URL = 'http://localhost:5001/api';
+const MOBILE_API_URL = 'http://<ip_do_servidor>:5001/api';
+
+export { WEB_API_URL, MOBILE_API_URL };
+```
 
 ## Execução da Aplicação
 
