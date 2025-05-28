@@ -58,9 +58,9 @@ sudo systemctl start mongodb
 ```
 ### 4. Conexão do Frontend com API backend
 **Passos:**
-1. Crie a pasta 'services' na raiz do projeto.
-2. Dentro da pasta 'services', crie o arquivo 'api.js'
-3. No arquivo 'api.js', adicione o seguinte trecho de código:
+1. Crie a pasta _services_ na raiz do projeto.
+2. Dentro da pasta _services_, crie o arquivo _api.js_
+3. No arquivo _api.js_, adicione o seguinte trecho de código:
 
 ```js
 const WEB_API_URL = 'http://localhost:5001/api';
