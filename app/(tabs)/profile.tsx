@@ -14,6 +14,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import * as SecureStore from 'expo-secure-store';
 import { SafeAreaView } from "react-native-safe-area-context";
+import { MOBILE_API_URL, WEB_API_URL } from "@/services/api";
 
 export default function ProfileScreen() {
   const router = useRouter();
@@ -77,8 +78,8 @@ export default function ProfileScreen() {
             try {
 
               const apiUrl = Platform.OS === 'web'
-                ? 'http://localhost:5001/api/users/profile'
-                : 'http://192.168.87.216:5001/api/users/profile';
+                ? `${WEB_API_URL}/users/profile`
+                : `${MOBILE_API_URL}/users/profile`;
 
               const response = await fetch(apiUrl, {
                 headers: {
@@ -128,7 +129,7 @@ export default function ProfileScreen() {
           const token = await SecureStore.getItemAsync('token');
           if (token) {
             try {
-              const apiUrl = 'http://10.0.3.2:5001/api/users/profile';
+              const apiUrl = `${MOBILE_API_URL}/users/profile`;
               const response = await fetch(apiUrl, {
                 headers: {
                   'Authorization': `Bearer ${token}`
