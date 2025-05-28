@@ -95,6 +95,19 @@ Na pasta raiz do projeto:
 ```bash
 node api-server.js
 ```
+#### Configuração das variáveis de ambiente
+**Passos:**
+1. Navegue até a pasta _backend_
+```
+cd backend
+```
+2. Na pasta _backend_, adicione o arquivo _config.env_
+3. Dentro do arquivo _config.env_, adicione o seguinte trecho de código:
+```
+PORT=5000
+MONGO_URI=<seu_banco_de_dados>
+JWT_SECRET=<seu_token_jwt> 
+```
 
 ### 2. Iniciar o Frontend
 
