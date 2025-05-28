@@ -12,6 +12,7 @@ import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { BackButton } from '@/components/BackButton';
 import { FormInput } from '@/components/FormInput';
+import { MOBILE_API_URL, WEB_API_URL } from '@/services/api';
 
 const petTypes = ['Cachorro', 'Gato', 'Pássaro', 'Peixe', 'Roedor', 'Réptil', 'Outro'];
 
@@ -61,8 +62,8 @@ export default function AddPetScreen() {
 
     try {
       const apiUrl = Platform.OS === 'web' 
-        ? 'http://localhost:5001/api/pets'
-        : 'http://192.168.87.216:5001/api/pets';
+        ? `${WEB_API_URL}/pets`
+        : `${MOBILE_API_URL}/pets`;
 
       const petData = {
         name,
