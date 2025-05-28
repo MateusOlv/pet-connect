@@ -4,6 +4,7 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import { Calendar } from "react-native-calendars";
 import * as SecureStore from 'expo-secure-store';
 import { Ionicons } from '@expo/vector-icons';
+import { MOBILE_API_URL, WEB_API_URL } from "@/services/api";
 
 interface PetShop {
   _id: string;
@@ -66,8 +67,8 @@ export default function ScheduleScreen() {
         
         // Buscar os dados do pet shop
         const petShopResponse = await fetch(Platform.OS === 'web' 
-          ? `http://localhost:5001/api/providers/${id}`
-          : `http://192.168.87.216:5001/api/providers/${id}`, {
+          ? `${WEB_API_URL}/providers/${id}`
+          : `${MOBILE_API_URL}/providers/${id}`, {
           headers: {
             "Authorization": `Bearer ${token}`
           },
@@ -75,8 +76,8 @@ export default function ScheduleScreen() {
 
         // Buscar os pets do usuário
         const petsResponse = await fetch(Platform.OS === 'web'
-          ? "http://localhost:5001/api/pets"
-          : "http://10.0.3.2:5001/api/pets", {
+          ? `${WEB_API_URL}/pets`
+          : `${MOBILE_API_URL}/pets`, {
           headers: {
             "Authorization": `Bearer ${token}`
           },
@@ -86,8 +87,8 @@ export default function ScheduleScreen() {
 
         // Buscar os serviços disponíveis
         const servicesResponse = await fetch(Platform.OS === 'web'
-          ? "http://localhost:5001/api/services"
-          : "http://10.0.3.2:5001/api/services", {
+          ? `${WEB_API_URL}/services`
+          : `${MOBILE_API_URL}/services`, {
           headers: {
             "Authorization": `Bearer ${token}`
           },
@@ -222,8 +223,8 @@ export default function ScheduleScreen() {
       console.log('Enviando agendamento:', appointmentData);
 
       const response = await fetch(Platform.OS === 'web'
-        ? "http://localhost:5001/api/appointments"
-        : "http://10.0.3.2:5001/api/appointments", {
+        ? `${WEB_API_URL}/appointments`
+        : `${MOBILE_API_URL}/appointments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
