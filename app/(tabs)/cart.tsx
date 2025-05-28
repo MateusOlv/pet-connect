@@ -12,6 +12,7 @@ import { CartItem } from "../../components/CartItem";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
 import * as SecureStore from 'expo-secure-store';
+import { MOBILE_API_URL, WEB_API_URL } from "@/services/api";
 
 type CartItemType = {
   id: string;
@@ -29,8 +30,8 @@ export default function CartScreen() {
   }, []);
 
   const apiUrl = Platform.OS === 'web'
-    ? 'http://localhost:5001/api'
-    : 'http://192.168.87.216:5001/api';
+    ? `${WEB_API_URL}`
+    : `${MOBILE_API_URL}`;
 
 
   const fetchCart = async () => {

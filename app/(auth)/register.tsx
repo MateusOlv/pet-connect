@@ -15,6 +15,7 @@ import {
 import { Link, router } from "expo-router";
 import { FormInput } from "@/components/FormInput";
 import * as SecureStore from 'expo-secure-store';
+import { MOBILE_API_URL, WEB_API_URL } from "@/services/api";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
@@ -100,8 +101,8 @@ const RegisterScreen = () => {
     try {
       // URL adaptativa dependendo da plataforma
       const apiUrl = Platform.OS === 'web' 
-              ? 'http://localhost:5001/api/users/register'
-              : 'http://192.168.87.216:5001/api/users/register';
+              ? `${WEB_API_URL}/users/register`
+              : `${MOBILE_API_URL}/users/register`;
       
       console.log('Enviando requisição para:', apiUrl);
       console.log('Dados do formulário:', { email, name, CPF: cpf, password: '***' });
