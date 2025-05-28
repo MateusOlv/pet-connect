@@ -58,9 +58,9 @@ sudo systemctl start mongodb
 ```
 ### 4. Conexão do Frontend com API backend
 **Passos:**
-1. Crie a pasta 'services' na raiz do projeto.
-2. Dentro da pasta 'services', crie o arquivo 'api.js'
-3. No arquivo 'api.js', adicione o seguinte trecho de código:
+1. Crie a pasta _services_ na raiz do projeto.
+2. Dentro da pasta _services_, crie o arquivo _api.js_
+3. No arquivo _api.js_, adicione o seguinte trecho de código:
 
 ```js
 const WEB_API_URL = 'http://localhost:5001/api';
@@ -94,6 +94,19 @@ MongoDB Conectado: localhost
 Na pasta raiz do projeto:
 ```bash
 node api-server.js
+```
+#### Configuração das variáveis de ambiente
+**Passos:**
+1. Navegue até a pasta _backend_
+```
+cd backend
+```
+2. Na pasta _backend_, adicione o arquivo _config.env_
+3. Dentro do arquivo _config.env_, adicione o seguinte trecho de código:
+```
+PORT=5000
+MONGO_URI=<seu_banco_de_dados>
+JWT_SECRET=<seu_token_jwt> 
 ```
 
 ### 2. Iniciar o Frontend
