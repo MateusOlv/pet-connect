@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, 
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import * as SecureStore from 'expo-secure-store';
+import { MOBILE_API_URL, WEB_API_URL } from '@/services/api';
 
 interface Appointment {
   _id: string;
@@ -77,8 +78,8 @@ export default function AppointmentsScreen() {
       }
 
       const apiUrl = Platform.OS === 'web' 
-        ? 'http://localhost:5001/api/appointments'
-        : 'http://192.168.87.216:5001/api/appointments';
+        ? `${WEB_API_URL}/appointments`
+        : `${MOBILE_API_URL}/appointments`;
 
       const response = await fetch(apiUrl, {
         headers: {
@@ -256,8 +257,8 @@ export default function AppointmentsScreen() {
               }
 
               const apiUrl = Platform.OS === 'web' 
-                ? `http://localhost:5001/api/appointments/${id}`
-                : `http://10.0.3.2:5001/api/appointments/${id}`;
+                ? `${WEB_API_URL}/appointments/${id}`
+                : `${MOBILE_API_URL}/appointments/${id}`;
 
               const response = await fetch(apiUrl, {
                 method: 'DELETE',
