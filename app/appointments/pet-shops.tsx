@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import * as SecureStore from 'expo-secure-store';
+import { MOBILE_API_URL } from "@/services/api";
 
 interface PetShop {
   _id: string;
@@ -27,7 +28,7 @@ export default function PetShopsScreen() {
         return;
       }
 
-      const response = await fetch('http://192.168.87.216:5001/api/providers', {
+      const response = await fetch(`${MOBILE_API_URL}/providers`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
