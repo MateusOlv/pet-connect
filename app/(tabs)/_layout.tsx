@@ -52,10 +52,7 @@ export default function TabsLayout() {
         ),
       }} />
       <Tabs.Screen name="paginadeescolhadepetshop" options={{ 
-            title: "petshop",
-            tabBarIcon: ({ color }) => (
-                <Icon name="shop" size={20} color={color} />
-            ), 
+            title: "petshop"
         }} />
 
       <Tabs.Screen name="addPet" options={{ href: null }} />

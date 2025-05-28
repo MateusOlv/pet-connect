@@ -1,21 +1,29 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
+import { HomeHeader } from '@/components/HomeHeader';
+import { BackButton } from '@/components/BackButton';
+import Icon from "react-native-vector-icons/Ionicons";
 
 export default function PetShopScreen() {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <View style={styles.header}>
-        <TouchableOpacity>
-          <Ionicons name="chevron-back" size={24} color="black" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Brasília,DF</Text>
-        <View style={styles.headerIcons}>
-          <Feather name="more-vertical" size={24} color="white" />
-        </View>
-      </View>
-
+      {/* Header */}
+            <View style={styles.header}>
+              <TouchableOpacity style={styles.backButton} >
+                <Icon name="chevron-back" size={20} color="#101010" />
+              </TouchableOpacity>
+      
+              <View style={styles.locationContainer}>
+                <Text style={styles.locationTitle}>Sua Localização</Text>
+                <View style={styles.locationInfo}>
+                  <Icon name="location" size={24} color="#040404" />
+                  <Text style={styles.locationText}>Brasília, DF</Text>
+                </View>
+              </View>
+            </View>
+      
       {/* Search Bar */}
       <View style={styles.searchBar}>
         <Feather name="search" size={20} color="#999" style={{ marginLeft: 10 }} />
@@ -59,20 +67,20 @@ export default function PetShopScreen() {
 }
 
 const categories = [
-  { icon: require('@/assets/images/image.png'), label: 'Ofertas\nDa Semana' },
-  { icon: require('@/assets/images/pet-illustration.png'), label: 'Cães' },
-  { icon: require('@/assets/images/pet-illustration.png'), label: 'Gatos' },
-  { icon: require('@/assets/images/pet-illustration.png'), label: 'Outros Pets' },
-  { icon: require('@/assets/images/pet-illustration.png'), label: 'Farma Pet' },
-  { icon: require('@/assets/images/pet-illustration.png'), label: 'Higiene Pet' },
-  { icon: require('@/assets/images/pet-illustration.png'), label: 'Para o\nseu Filhote' },
+  { icon: require('@/assets/images/image copy.png'), label: 'Ofertas\nDa Semana' },
+  { icon: require('@/assets/images/image copy 2.png'), label: 'Cães' },
+  { icon: require('@/assets/images/image copy 3.png'), label: 'Gatos' },
+  { icon: require('@/assets/images/image copy 4.png'), label: 'Outros Pets' },
+  { icon: require('@/assets/images/image copy 5.png'), label: 'Farma Pet' },
+  { icon: require('@/assets/images/image copy 6.png'), label: 'Higiene Pet' },
+  { icon: require('@/assets/images/image copy 7.png'), label: 'Para o\nseu Filhote' },
 ];
 
 const shops = [
-  { logo: require('@/assets/images/pet-illustration.png'), name: 'PetShop Cobalt', time: 'A partir de 1h32min', coupon: 'Cupom de R$ 15' },
-  { logo: require('@/assets/images/pet-illustration.png'), name: 'Casa do Pet', time: 'A partir de 1h36min', coupon: 'Cupom de R$ 15' },
-  { logo: require('@/assets/images/pet-illustration.png'), name: 'Home Pets', time: 'A partir de 1h38min', coupon: 'Cupom de R$ 15' },
-  { logo: require('@/assets/images/pet-illustration.png'), name: 'PetShop Vegans', time: 'Amanhã, a partir das 9h', coupon: 'Cupom de R$ 25' },
+  { logo: require('@/assets/images/image copy 8.png'), name: 'PetShop Cobalt', time: 'A partir de 1h32min', coupon: 'Cupom de R$ 15' },
+  { logo: require('@/assets/images/image copy 9.png'), name: 'Casa do Pet', time: 'A partir de 1h36min', coupon: 'Cupom de R$ 15' },
+  { logo: require('@/assets/images/image copy 10.png'), name: 'Home Pets', time: 'A partir de 1h38min', coupon: 'Cupom de R$ 15' },
+  { logo: require('@/assets/images/image copy 11.png'), name: 'PetShop Vegans', time: 'Amanhã, a partir das 9h', coupon: 'Cupom de R$ 25' },
 ];
 
 const styles = StyleSheet.create({
@@ -83,9 +91,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 24,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   headerText: {
     fontSize: 16,
@@ -177,5 +188,41 @@ const styles = StyleSheet.create({
     width: 50,
     height: 70,
     resizeMode: 'contain',
+  },
+  
+  //Estilos pagina pet shop.tsx
+  backButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: "#EDEDED",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
+  },
+  locationContainer: {
+    marginLeft: 82,
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 9,
+  },
+  locationTitle: {
+    color: "#040404",
+    fontSize: 14,
+    fontWeight: "400",
+    lineHeight: 20,
+    textAlign: "center",
+  },
+  locationInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  locationText: {
+    color: "#040404",
+    fontSize: 14,
+    fontWeight: "600",
+    lineHeight: 20,
   },
 });
