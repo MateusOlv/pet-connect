@@ -13,6 +13,7 @@ import { Link, router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { BackButton } from '@/components/BackButton';
 import * as SecureStore from 'expo-secure-store';
+import { MOBILE_API_URL, WEB_API_URL } from '@/services/api';
 
 interface Pet {
   _id: string;
@@ -40,8 +41,8 @@ export default function PetsScreen() {
     try {
       // Definir a URL correta da API
       const apiUrl = Platform.OS === 'web'
-        ? 'http://localhost:5001/api/pets'
-        : 'http://192.168.87.216:5001/api/pets';
+        ? `${WEB_API_URL}/pets`
+        : `${MOBILE_API_URL}/pets`;
       
       // Recuperar o token com debug extra
       let token = '';
