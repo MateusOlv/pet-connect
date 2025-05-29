@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator, Platform } from "react-native";
 import { useRouter } from "expo-router";
 import * as SecureStore from 'expo-secure-store';
-import { MOBILE_API_URL } from "@/services/api";
+import { MOBILE_API_URL, WEB_API_URL } from "@/services/api";
 
 interface PetShop {
   _id: string;
@@ -22,13 +22,24 @@ export default function PetShopsScreen() {
 
   const fetchPetShops = async () => {
     try {
-      const token = await SecureStore.getItemAsync('token');
+      let token=''
+
+      if (Platform.OS === 'web') {
+        token = localStorage.getItem('token') || '';
+        console.log('Token recuperado (web): ', token ? 'Token existe' : 'Token não existe');
+      } else {
+        token = await SecureStore.getItemAsync('token') || '';
+        console.log('Token recuperado (web): ', token ? 'Token existe' : 'Token não existe');
+      }1
+      
       if (!token) {
         router.replace('/login');
         return;
       }
 
-      const response = await fetch(`${MOBILE_API_URL}/providers`, {
+      const response = await fetch(Platform.OS==="web"
+          ? `${WEB_API_URL}/providers`
+          : `${MOBILE_API_URL}/providers`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -42,9 +53,9 @@ export default function PetShopsScreen() {
         setError(data.message || 'Erro ao carregar pet shops');
         // Se não houver dados, usar dados simulados para demonstração
         setPetShops([
-          { _id: "1", name: "Pet Shop Brasília", address: "Asa Sul, Brasília" },
-          { _id: "2", name: "Amigo Pet", address: "Asa Norte, Brasília" },
-          { _id: "3", name: "Pet Love", address: "Taguatinga, Brasília" },
+          { _id: "1", name: "Dummy 1", address: "Asa Sul, Brasília" },
+          { _id: "2", name: "Dummy 2", address: "Asa Norte, Brasília" },
+          { _id: "3", name: "Dummy 3", address: "Taguatinga, Brasília" },
         ]);
       }
     } catch (err) {
@@ -52,9 +63,9 @@ export default function PetShopsScreen() {
       console.error(err);
       // Se ocorrer erro, usar dados simulados para demonstração
       setPetShops([
-        { _id: "1", name: "Pet Shop Brasília", address: "Asa Sul, Brasília" },
-        { _id: "2", name: "Amigo Pet", address: "Asa Norte, Brasília" },
-        { _id: "3", name: "Pet Love", address: "Taguatinga, Brasília" },
+        { _id: "1", name: "Dummy 1", address: "Asa Sul, Brasília" },
+        { _id: "2", name: "Dummy 2", address: "Asa Norte, Brasília" },
+        { _id: "3", name: "Dummy 3", address: "Taguatinga, Brasília" },
       ]);
     } finally {
       setLoading(false);

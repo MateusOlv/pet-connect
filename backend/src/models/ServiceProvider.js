@@ -15,16 +15,16 @@ const ServiceProviderSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-/* 
   services: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Service'
+    ref: 'Service',
+    required: false
   }],
   products: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Product'
+    ref: 'Product',
+    require: false
   }], 
-*/
   createdAt: {
     type: Date,
     default: Date.now
