@@ -7,6 +7,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 const windowWidth = Dimensions.get("window").width;
 const gridPadding = 24;
@@ -18,15 +19,17 @@ const itemWidth = availableWidth / numberOfColumns;
 
 // Categorias com ícones do Ionicons
 const categories = [
-  { id: 1, title: "Rações", icon: "nutrition-outline" as any, color: "#FF9933", isMain: true },
-  { id: 2, title: "Acessórios", icon: "paw-outline" as any, color: "#3366FF", isMain: true },
-  { id: 3, title: "Banho e Tosa", icon: "water-outline" as any, color: "#33CCFF" },
-  { id: 4, title: "Pet Shop", icon: "storefront-outline" as any, color: "#FF6633" },
-  { id: 5, title: "Lembretes", icon: "calendar-outline" as any, color: "#66CC33" },
-  { id: 6, title: "Hóspet", icon: "home-outline" as any, color: "#CC66FF" },
+  { id: 1, title: "Rações", icon: "nutrition-outline" as any, color: "#FF9933", isMain: true, route: "#" },
+  { id: 2, title: "Acessórios", icon: "paw-outline" as any, color: "#3366FF", isMain: true, route: "#" },
+  { id: 3, title: "Banho e Tosa", icon: "water-outline" as any, color: "#33CCFF", route: "appointments/pet-shops" },
+  { id: 4, title: "Pet Shop", icon: "storefront-outline" as any, color: "#FF6633", route: "petshops" },
+  { id: 5, title: "Lembretes", icon: "calendar-outline" as any, color: "#66CC33", route: "#" },
+  { id: 6, title: "Hóspet", icon: "home-outline" as any, color: "#CC66FF", route: "appointments/pet-shops" },
 ];
 
 export const CategoryGrid = () => {
+  const router = useRouter();
+
   const mainCategories = categories.filter((cat) => cat.isMain);
   const subCategories = categories.filter((cat) => !cat.isMain);
 
@@ -34,7 +37,7 @@ export const CategoryGrid = () => {
     <View style={styles.container}>
       <View style={styles.mainCategories}>
         {mainCategories.map((category) => (
-          <TouchableOpacity key={category.id} style={styles.mainCategory}>
+          <TouchableOpacity key={category.id} style={styles.mainCategory} onPress={() => router.push(category.route as any)}>
             <Text style={styles.mainCategoryTitle}>{category.title}</Text>
             <View style={styles.iconContainer}>
               <Ionicons name={category.icon} size={48} color={category.color} />
@@ -44,7 +47,7 @@ export const CategoryGrid = () => {
       </View>
       <View style={styles.subCategories}>
         {subCategories.map((category) => (
-          <TouchableOpacity key={category.id} style={styles.subCategory}>
+          <TouchableOpacity key={category.id} style={styles.subCategory} onPress={() => router.push(category.route as any)}>
             <View style={styles.iconContainerSmall}>
               <Ionicons name={category.icon} size={30} color={category.color} />
             </View>
