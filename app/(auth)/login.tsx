@@ -34,34 +34,34 @@ const LoginScreen = () => {
     // Limpar erros anteriores
     setEmailError("");
     setPasswordError("");
-    
+
     // Validar o formato do email
     if (!email.trim()) {
       setEmailError("Por favor, insira seu email");
       return;
     }
-    
+
     if (!validateEmail(email)) {
       setEmailError("Por favor, insira um email válido");
       return;
     }
-    
+
     // Validar se senha foi preenchida
     if (!password.trim()) {
       setPasswordError("Por favor, insira sua senha");
       return;
     }
-    
+
     setIsLoading(true);
-    
+
     try {
-      const apiUrl = Platform.OS === 'web' 
+      const apiUrl = Platform.OS === 'web'
         ? `${WEB_API_URL}/users/login`
         : `${MOBILE_API_URL}/users/login`;
-        
+
       console.log('Enviando requisição para:', apiUrl);
       console.log('Dados do login:', { email, password: '***' });
-      
+
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -69,15 +69,29 @@ const LoginScreen = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-      
+
       console.log('Status da resposta:', response.status);
-      const data = await response.json();
+
+      const text = await response.text();
+      console.log('Texto da resposta:', text);
+
+      let data = null;
+      if (text) {
+        try {
+          data = JSON.parse(text);
+        } catch (parseError) {
+          console.error("Erro ao parsear JSON:", parseError);
+          Alert.alert("Erro", "Resposta inválida do servidor");
+          return;
+        }
+      }
+
       console.log('Dados da resposta:', data);
-      
+
       if (response.ok) {
         // Salvando o token em algum lugar seguro
         console.log("Login bem-sucedido:", data);
-        
+
         // Armazenar o token e outras informações do usuário
         if (data.token) {
           if (Platform.OS === 'web') {
@@ -86,13 +100,13 @@ const LoginScreen = () => {
             localStorage.removeItem('userId');
             localStorage.removeItem('userName');
             localStorage.removeItem('userEmail');
-            
+
             // Armazenar novos dados
             localStorage.setItem('token', data.token);
             localStorage.setItem('userId', data.userId.toString());
             localStorage.setItem('userName', data.name || '');
             localStorage.setItem('userEmail', email);
-            
+
             console.log('Dados armazenados no localStorage:', {
               token: data.token ? 'presente' : 'ausente',
               userId: data.userId,
@@ -105,13 +119,13 @@ const LoginScreen = () => {
             await SecureStore.deleteItemAsync('userId');
             await SecureStore.deleteItemAsync('userName');
             await SecureStore.deleteItemAsync('userEmail');
-            
+
             // Armazenar novos dados
             await SecureStore.setItemAsync('token', data.token);
             await SecureStore.setItemAsync('userId', data.userId.toString());
             await SecureStore.setItemAsync('userName', data.name || '');
             await SecureStore.setItemAsync('userEmail', email);
-            
+
             console.log('Dados armazenados no SecureStore:', {
               token: data.token ? 'presente' : 'ausente',
               userId: data.userId,
@@ -120,7 +134,7 @@ const LoginScreen = () => {
             });
           }
         }
-        
+
         // Redirecionar para a página inicial
         if (Platform.OS === 'web') {
           window.location.href = '/';
@@ -129,21 +143,25 @@ const LoginScreen = () => {
         }
       } else {
         console.log("Erro no login:", data.message);
-        
+
         // Tratamento específico para diferentes tipos de erro
         if (data.message === 'Usuário não encontrado' || data.message.includes('não encontrado')) {
           setEmailError("Email não cadastrado no sistema");
           // Destacar visualmente o campo com erro
-          const emailInput = document.getElementById('email-input');
-          if (emailInput && Platform.OS === 'web') emailInput.focus();
-        } else if (data.message === 'Email ou senha inválidos' || 
-                  data.message === 'Senha incorreta' || 
-                  data.message.includes('inválidos') || 
-                  data.message.includes('incorreta')) {
+          if (Platform.OS === 'web'){
+            const emailInput = document.getElementById('email-input');
+            if (emailInput) emailInput.focus();
+          }
+        } else if (data.message === 'Email ou senha inválidos' ||
+          data.message === 'Senha incorreta' ||
+          data.message.includes('inválidos') ||
+          data.message.includes('incorreta')) {
           setPasswordError("Senha incorreta");
           // Destacar visualmente o campo com erro
-          const passwordInput = document.getElementById('password-input');
-          if (passwordInput && Platform.OS === 'web') passwordInput.focus();
+          if (Platform.OS === 'web'){
+            const passwordInput = document.getElementById('password-input');
+            if (passwordInput) passwordInput.focus();
+          }
         } else {
           // Caso seja outro erro, mostrar um alerta
           Alert.alert("Erro no login", data.message || "Ocorreu um erro ao fazer login");
@@ -151,7 +169,6 @@ const LoginScreen = () => {
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
-      Alert.alert("Erro de conexão", "Não foi possível conectar ao servidor");
     } finally {
       setIsLoading(false);
     }
@@ -163,7 +180,7 @@ const LoginScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
       >
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={{ flexGrow: 1 }}
           showsVerticalScrollIndicator={false}
         >
@@ -217,8 +234,8 @@ const LoginScreen = () => {
                   <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity 
-                  style={[styles.loginButton, isLoading && styles.loginButtonDisabled]} 
+                <TouchableOpacity
+                  style={[styles.loginButton, isLoading && styles.loginButtonDisabled]}
                   onPress={handleLogin}
                   disabled={isLoading}
                   testID="enter-button"
