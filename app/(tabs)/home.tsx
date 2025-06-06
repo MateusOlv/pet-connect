@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ScrollView, Platform, TouchableOpacity, FlatList } from "react-native";
+import { View, StyleSheet, ScrollView, Platform, TouchableOpacity, FlatList, Text } from "react-native";
 import { HomeHeader } from "../../components/HomeHeader";
 import { CategoryGrid } from "../../components/CategoryGrid";
 import { ProductCard } from "../../components/ProductCard";
@@ -35,8 +35,8 @@ export default function HomeScreen() {
     setIsLoading(true);
     setError('');
 
-    try{
-      const apiUrl = Platform.OS === 'web' 
+    try {
+      const apiUrl = Platform.OS === 'web'
         ? `${WEB_API_URL}/product`
         : `${MOBILE_API_URL}/product`;
 
@@ -45,7 +45,7 @@ export default function HomeScreen() {
       if (Platform.OS === 'web') {
         token = localStorage.getItem('token') || '';
         console.log('Token recuperado (web):', token ? 'Token existe' : 'Token não existe');
-        
+
         // Debug para LocalStorage
         console.log('---- DEBUG LOCALSTORAGE ----');
         console.log('userId:', localStorage.getItem('userId'));
@@ -85,11 +85,11 @@ export default function HomeScreen() {
 
       if (!response.ok) {
         let errorData;
-        
+
         try {
           errorData = await response.json();
-        } catch(e){
-          errorData = { message: 'Erro desconhecido'}
+        } catch (e) {
+          errorData = { message: 'Erro desconhecido' }
         }
 
         console.error('Erro na API:', errorData);
@@ -123,17 +123,20 @@ export default function HomeScreen() {
       } else {
         setError(data.message || 'Erro ao carregar produtos');
       }
-    } catch(error){
+    } catch (error) {
       console.log('Erro ao buscar produtos', error);
       setError('Não foi possível carregar os produtos. Tente novamente mais tarde.');
-    }finally{
+    } finally {
       setIsLoading(false);
     }
   };
 
-  
-
-
+  const handleSelectProduct = (id: string) => {
+    router.push({
+      pathname: '/(tabs)/product',
+      params: { id }
+    } as any)
+  };
 
   return (
     <View style={styles.container}>
@@ -143,14 +146,27 @@ export default function HomeScreen() {
         </View>
         <CategoryGrid />
         <View style={styles.productsGrid}>
-          <FlatList<Product>
+          <FlatList
             data={products}
             keyExtractor={(item) => item._id}
+            //contentContainerStyle={{ padding: 16 }}
+            //contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 16 }}
+            columnWrapperStyle={{ justifyContent: "space-between", marginBottom: 16 }}
+            numColumns={2}
+
             renderItem={({ item }) => (
-              <TouchableOpacity
-        
-              >
-                
+              <TouchableOpacity onPress={() => handleSelectProduct(item._id)}>
+                <ProductCard
+                  title={item.name}
+                  rating={4.9}
+                  distance="1km"
+                  price={`R$ ${item.price.toString()}`}
+                  image={racaoFriskiesIcon}
+                    /*item.imageUrl
+                      ? { uri: item.imageUrl } // Imagem da API
+                      : null // Ou deixa o placeholder
+                  }*/
+                />
               </TouchableOpacity>
             )}
           />
