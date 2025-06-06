@@ -57,6 +57,7 @@ export default function TabsLayout() {
         }} />
 
       <Tabs.Screen name="payment" options={{ href: null}}/>
+      <Tabs.Screen name="product" options={{ href: null}}/>
     </Tabs>
   );
 }
